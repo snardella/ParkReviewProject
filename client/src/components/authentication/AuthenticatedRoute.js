@@ -11,7 +11,8 @@ const AuthenticationCheck = ({ component: Component, user }) => {
 const AuthenticatedRoute = ({ component, user, ...rest }) => {
   return (
     <Route
-  
+
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
       <AuthenticationCheck user={user} component={component} />

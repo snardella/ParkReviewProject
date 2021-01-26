@@ -7,7 +7,7 @@ const UserProfile = (props) => {
   }
   return (
     <div>
-      <h1>This is a page built specifically for {userName} to see</h1>
+      <h1>Parkview profile for {userName}</h1>
     </div>
   )
 }

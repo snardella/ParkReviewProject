@@ -22,7 +22,7 @@ const App = (props) => {
       });
   }, []);
 
-  let greeting = "Hello from react"
+  let greeting = "Welcome to Parkview"
   if(currentUser) {
     greeting += `, ${currentUser.email}`
   }
