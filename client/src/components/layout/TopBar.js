@@ -32,7 +32,7 @@ const TopBar = ({ user }) => {
         <ul className="menu">
           <li className="menu-text">App</li>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/parks">Home</Link>
           </li>
         </ul>
       </div>
