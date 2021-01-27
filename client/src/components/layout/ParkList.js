@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import ParkTile from "./ParkTile.js"
-import ParkShow from "./ParkShow.js"
 
 const ParkList = (props) => {
 

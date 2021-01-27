@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react"
 
-const ShowPage = props => {
+const ParkShow = props => {
   const [park, setPark] = useState({})
+
   const getPark = async () => {
     const parkId = props.match.params.id;
 
@@ -18,6 +19,7 @@ const ShowPage = props => {
       console.error(`Err in fetch: ${error.message}`)
     }
   }
+  
   useEffect(() => {
     getPark()
   }, [])
@@ -33,4 +35,4 @@ const ShowPage = props => {
   )
 }
 
-export default ShowPage
+export default ParkShow
