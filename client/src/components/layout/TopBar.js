@@ -18,6 +18,9 @@ const TopBar = ({ user }) => {
     <li key="profile">
     <Link to="/profile">Profile Page</Link>
     </li>,
+    <li>
+      <Link to="/parks/new">Add a new Park!</Link>
+    </li>,
     <li key="sign-out">
       <SignOutButton />
     </li>
