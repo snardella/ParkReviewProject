@@ -3,8 +3,8 @@ import ParkTile from "./ParkTile.js"
 import ParkShow from "./ParkShow.js"
 
 const ParkList = (props) => {
-
   const [parks, setParks] = useState([])
+
   const getParks = async () => {
     try {
       const response = await fetch("/api/v1/parks")
@@ -16,7 +16,6 @@ const ParkList = (props) => {
       }
       const body = await response.json()
       setParks(body.parks)
-
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }
