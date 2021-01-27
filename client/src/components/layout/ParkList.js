@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react"
 import ParkTile from "./ParkTile.js"
+import ParkShow from "./ParkShow.js"
 
 const ParkList = (props) => {
 
-  const [park, setPark] = useState([])
-
-
+  const [parks, setParks] = useState([])
   const getParks = async () => {
     try {
       const response = await fetch("/api/v1/parks")
@@ -16,11 +15,9 @@ const ParkList = (props) => {
         throw(error)
       }
       const body = await response.json()
-
-      setPark(body.parks)
+      setParks(body.parks)
 
     } catch (error) {
-      console.log(error)
       console.error(`Error in fetch: ${error.message}`)
     }
   }
@@ -28,23 +25,20 @@ const ParkList = (props) => {
     getParks()
   }, [])
 
-  const parksListItems = park.map(parksItem => {
-
-    return(
-    <>
-      <ParkTile key={parksItem.id}
-        {...parksItem}
+  const parksListItems = parks.map(parksItem => {
+    
+    return <ParkTile 
+        key={parksItem.id} 
+        parkData= {parksItem}
       />
-    </>
-    )
   }) 
-
+  
   return (
     <div>
       <h1>All parks</h1>
-      <ul>
-        {parksListItems}
-      </ul>
+        <ul>
+          {parksListItems}
+        </ul>
     </div>
   )
 }
