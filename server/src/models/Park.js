@@ -13,13 +13,13 @@ class Park extends Model {
 
   static get jsonSchema() {
     return {
-    type: "object",
-    required: ["name", "location", "rating"],
-    name: {type: "string", minLength: 1, maxLength: 30},
-    location: {type: "string"},
-    description: {type: "string"},
-    rating: {type: ["string", "float"]},
-    picture: {type: ["string"]}
+      type: "object",
+      required: ["name", "location", "rating"],
+      name: {type: "string", minLength: 1, maxLength: 30},
+      location: {type: "string"},
+      description: {type: "string"},
+      rating: {type: ["string", "float"]},
+      picture: {type: ["string"]}
     }
   }
 }
