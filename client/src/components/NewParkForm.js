@@ -1,20 +1,19 @@
-import React, { useState } from "react"
-import translateServerErrors from "../services/translateServerErrors.js"
-import FormError from "./layout/FormError.js"
-import {Redirect} from "react-router-dom"
+import React, { useState } from "react";
+import translateServerErrors from "../services/translateServerErrors.js";
+import FormError from "./layout/FormError.js";
+import { Redirect } from "react-router-dom";
 
 const NewParkForm = (props) => {
-
   const [newPark, setNewPark] = useState({
     name: "",
     description: "",
     location: "",
     rating: "",
     picture: "",
-  })
+  });
 
-  const [errors, setErrors] = useState([])
-  const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [errors, setErrors] = useState([]);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const postPark = async (newParkData) => {
     try {
@@ -37,14 +36,20 @@ const NewParkForm = (props) => {
         }
       } else {
         const body = await response.json();
+<<<<<<< HEAD
         console.log("posted successfully", body)
         setShouldRedirect(true)
+=======
+        console.log("posted successfully", body);
+        setShouldRedirect(true);
+>>>>>>> 3ff6a03e2461e7671c3864a342e8026a69ad5b8e
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
 
+<<<<<<< HEAD
   const handleInputChange = event => {
     setNewPark({
       ...newPark,
@@ -57,6 +62,19 @@ const NewParkForm = (props) => {
     postPark(newPark)
     clearForm()
   }
+=======
+  const handleInputChange = (event) => {
+    setNewPark({
+      ...newPark,
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    postPark(newPark);
+    clearForm();
+  };
+>>>>>>> 3ff6a03e2461e7671c3864a342e8026a69ad5b8e
 
   const clearForm = () => {
     setNewPark({
@@ -65,17 +83,22 @@ const NewParkForm = (props) => {
       location: "",
       rating: "",
       picture: "",
+<<<<<<< HEAD
     })
   }
+=======
+    });
+  };
+>>>>>>> 3ff6a03e2461e7671c3864a342e8026a69ad5b8e
 
   if (shouldRedirect) {
-    return <Redirect to="/parks" />
+    return <Redirect to="/parks" />;
   }
 
   return (
     <div className="callout">
       <h1>Add a Park to this Page</h1>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <label>
           Name:
           <input
@@ -113,7 +136,7 @@ const NewParkForm = (props) => {
 
         <label>
           Rating:
-          <select name="rating" onChange={handleInputChange} value={newPark.rating}> 
+          <select name="rating" onChange={handleInputChange} value={newPark.rating}>
             <option value=" "></option>
             <option value="1">1 Star</option>
             <option value="1.5">1.5 Stars</option>
@@ -144,7 +167,7 @@ const NewParkForm = (props) => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default NewParkForm
+export default NewParkForm;
