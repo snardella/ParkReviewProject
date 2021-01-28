@@ -33,7 +33,7 @@ const NewReviewForm = (props) => {
       } else {
         
         const body = await response.json();
-        console.log("posted succesfully", body)
+        console.log("posted successfully", body)
         //const updatedReviews = park.reviews.concat(body.review);
         //setNewReview({ ...park, reviews: updatedReviews });
       }
