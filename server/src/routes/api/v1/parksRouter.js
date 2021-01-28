@@ -1,6 +1,8 @@
 import express from "express"
 import Park from "../../../models/Park.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
+import objection from "objection"
+const { ValidationError } = objection
 
 const parksRouter = new express.Router();
 
@@ -20,12 +22,12 @@ parksRouter.post("/", async (req, res) => {
     const newPark = await Park.query().insertAndFetch(formInput)
     return res.status(201).json({park: newPark})
   }catch(error) {
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error.data });
+    }
     return res.status(500).json({errors: error})
   }
-
 })
-
-
 
 parksRouter.get("/:id", async (req,res) => {
 const parkId = req.params.id;

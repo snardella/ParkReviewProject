@@ -19,7 +19,7 @@ class Park extends Model {
       location: {type: "string"},
       description: {type: "string"},
       rating: {type: ["string", "float"]},
-      picture: {type: ["string"]}
+      picture: {type: "string"}
     }
   }
 }
