@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import ParkTile from "./ParkTile.js"
 
 const ParkList = (props) => {
-
   const [parks, setParks] = useState([])
 
   const getParks = async () => {
@@ -15,9 +14,7 @@ const ParkList = (props) => {
         throw(error)
       }
       const body = await response.json()
-      
       setParks(body.parks)
-
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }

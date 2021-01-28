@@ -11,6 +11,7 @@ import UserProfile from "./UserProfile"
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
 import NewParkForm from "./NewParkForm"
 import ParkList from "./layout/ParkList.js";
+import ParkShow from "./layout/ParkShow.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -37,6 +38,7 @@ const App = (props) => {
           <h2>{greeting}</h2>
         </Route>
         <Route exact path="/parks" component={ParkList} />
+        <Route exact path="/parks/:id" component={ParkShow} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
