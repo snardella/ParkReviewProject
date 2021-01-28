@@ -8,10 +8,10 @@ const ParkTile = (props) => {
       <Link to={`/parks/${id}`}>
         <h3>{name}</h3>
       </Link>
+      <img src={picture}/>
       <h5>{location}</h5>
       <p>{description}</p>
       <p>{rating}</p>
-      <p>{picture}</p>
     </div>
   )
 }

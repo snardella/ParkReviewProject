@@ -39,14 +39,11 @@ const NewParkForm = (props) => {
         const body = await response.json();
         console.log("posted successfully", body)
         setShouldRedirect(true)
-       
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
-
-
 
   const handleInputChange = event => {
     setNewPark({
@@ -54,6 +51,7 @@ const NewParkForm = (props) => {
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
+
   const handleSubmit = event => {
     event.preventDefault()
     postPark(newPark)
@@ -69,7 +67,6 @@ const NewParkForm = (props) => {
       picture: "",
     })
   }
-
 
   if (shouldRedirect) {
     return <Redirect to="/parks" />
