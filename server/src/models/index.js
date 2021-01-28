@@ -1,5 +1,6 @@
-// include all of your models here using CommonJS requires
-const User = require("./User.js")
-const Review = require("./Review.js")
+const User = require("./User.js");
+const Review = require("./Review.js");
+const Park = require("./Park.js");
+const Model = require("./Model.js");
 
-module.exports = {User, Review};
+module.exports = { User, Model, Park, Review };

@@ -18,6 +18,9 @@ const TopBar = ({ user }) => {
     <li key="profile">
     <Link to="/profile">Profile Page</Link>
     </li>,
+    <li>
+      <Link to="/new">Add a new Park!</Link>
+    </li>,
     <li key="sign-out">
       <SignOutButton />
     </li>
@@ -29,7 +32,7 @@ const TopBar = ({ user }) => {
         <ul className="menu">
           <li className="menu-text">App</li>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/parks">Home</Link>
           </li>
         </ul>
       </div>
