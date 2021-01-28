@@ -9,6 +9,7 @@ import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import UserProfile from "./UserProfile"
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
+import NewParkForm from "./NewParkForm"
 import ParkList from "./layout/ParkList.js";
 import ParkShow from "./layout/ParkShow.js";
 
@@ -37,6 +38,7 @@ const App = (props) => {
           <h2>{greeting}</h2>
         </Route>
         <Route exact path="/parks" component={ParkList} />
+        <AuthenticatedRoute exact path="/parks/new" component={NewParkForm} user={currentUser} />
         <Route exact path="/parks/:id" component={ParkShow} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
