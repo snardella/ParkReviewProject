@@ -15,20 +15,6 @@ parksRouter.get("/", async (req, res) => {
   }
 })
 
-parksRouter.post("/", async (req, res) => {
-  const { body } = req
-  const formInput = cleanUserInput(body)
-  try{
-    const newPark = await Park.query().insertAndFetch(formInput)
-    return res.status(201).json({park: newPark})
-  }catch(error) {
-    if (error instanceof ValidationError) {
-      return res.status(422).json({ errors: error.data });
-    }
-    return res.status(500).json({errors: error})
-  }
-})
-
 parksRouter.get("/:id", async (req,res) => {
 const parkId = req.params.id;
   try {
@@ -39,4 +25,17 @@ const parkId = req.params.id;
   }
 })
 
+parksRouter.post("/", async (req, res) => {
+  const { body } = req
+  const formInput = cleanUserInput(body)
+  try {
+    const newPark = await Park.query().insertAndFetch(formInput)
+    return res.status(201).json({park: newPark})
+  } catch(error) {
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error.data });
+    }
+    return res.status(500).json({errors: error})
+  }
+})
 export default parksRouter 
