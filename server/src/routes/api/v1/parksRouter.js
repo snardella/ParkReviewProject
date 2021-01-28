@@ -7,6 +7,8 @@ const { ValidationError } = objection;
 
 const parksRouter = new express.Router();
 
+parksRouter.use("/:parkId/reviews", parkReviewsRouter);
+
 parksRouter.get("/", async (req, res) => {
   try {
     const parks = await Park.query();
@@ -27,30 +29,17 @@ const parkId = req.params.id;
 })
 
 parksRouter.post("/", async (req, res) => {
-<<<<<<< HEAD
   const { body } = req
   const formInput = cleanUserInput(body)
   try {
     const newPark = await Park.query().insertAndFetch(formInput)
     return res.status(201).json({park: newPark})
   } catch(error) {
-=======
-  const { body } = req;
-  const formInput = cleanUserInput(body);
-  try {
-    const newPark = await Park.query().insertAndFetch(formInput);
-    return res.status(201).json({ park: newPark });
-  } catch (error) {
->>>>>>> 3ff6a03e2461e7671c3864a342e8026a69ad5b8e
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data });
     }
     return res.status(500).json({ errors: error });
   }
-<<<<<<< HEAD
-})
-export default parksRouter 
-=======
 });
 
 parksRouter.get("/:id", async (req, res) => {
@@ -63,7 +52,6 @@ parksRouter.get("/:id", async (req, res) => {
   }
 });
 
-parksRouter.use("/:parkId/reviews", parkReviewsRouter);
+
 
 export default parksRouter;
->>>>>>> 3ff6a03e2461e7671c3864a342e8026a69ad5b8e

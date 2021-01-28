@@ -36,20 +36,14 @@ const NewParkForm = (props) => {
         }
       } else {
         const body = await response.json();
-<<<<<<< HEAD
         console.log("posted successfully", body)
         setShouldRedirect(true)
-=======
-        console.log("posted successfully", body);
-        setShouldRedirect(true);
->>>>>>> 3ff6a03e2461e7671c3864a342e8026a69ad5b8e
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
 
-<<<<<<< HEAD
   const handleInputChange = event => {
     setNewPark({
       ...newPark,
@@ -62,19 +56,6 @@ const NewParkForm = (props) => {
     postPark(newPark)
     clearForm()
   }
-=======
-  const handleInputChange = (event) => {
-    setNewPark({
-      ...newPark,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    postPark(newPark);
-    clearForm();
-  };
->>>>>>> 3ff6a03e2461e7671c3864a342e8026a69ad5b8e
 
   const clearForm = () => {
     setNewPark({
@@ -83,13 +64,8 @@ const NewParkForm = (props) => {
       location: "",
       rating: "",
       picture: "",
-<<<<<<< HEAD
     })
   }
-=======
-    });
-  };
->>>>>>> 3ff6a03e2461e7671c3864a342e8026a69ad5b8e
 
   if (shouldRedirect) {
     return <Redirect to="/parks" />;

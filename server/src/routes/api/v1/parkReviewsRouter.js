@@ -9,16 +9,19 @@ const { ValidationError } = objection;
 const parkReviewsRouter = new express.Router({ mergeParams: true });
 
 parkReviewsRouter.post("/", async (req, res) => {
+  debugger
   const { body } = req;
   const formInput = cleanUserInput(body);
   const { rating, comments } = formInput;
-  const { parkId } = req.params;
+  const parkId = req.params.parkId;
+  const userId = req.user.id
   console.log(parkId);
   try {
     const newReview = await Review.query().insertAndFetch({
       rating,
       comments,
       parkId,
+      userId
     });
     console.log(newReview);
     return res.status(201).json({ review: newReview });

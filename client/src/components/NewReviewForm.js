@@ -31,9 +31,11 @@ const NewReviewForm = (props) => {
           throw error;
         }
       } else {
+        
         const body = await response.json();
-        const updatedReviews = park.reviews.concat(body.review);
-        setNewReview({ ...park, reviews: updatedReviews });
+        console.log("posted succesfully", body)
+        //const updatedReviews = park.reviews.concat(body.review);
+        //setNewReview({ ...park, reviews: updatedReviews });
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
