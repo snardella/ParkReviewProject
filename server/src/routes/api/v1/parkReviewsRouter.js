@@ -1,9 +1,9 @@
 import express from "express";
 
-import objetion from "objection";
+import objection from "objection";
 
 import { Review } from "../../../models/index.js";
-// import cleanUserInput from "../../../services/cleanUserInput.js";
+import cleanUserInput from "../../../services/cleanUserInput.js";
 const { ValidationError } = objection;
 
 const parkReviewsRouter = new express.Router({ mergeParams: true });
@@ -11,18 +11,16 @@ const parkReviewsRouter = new express.Router({ mergeParams: true });
 parkReviewsRouter.post("/", async (req, res) => {
   const { body } = req;
   const formInput = cleanUserInput(body);
-  const { name, location, description, rating, picture } = formInput;
+  const { rating, comments } = formInput;
   const { parkId } = req.params;
-
+  console.log(parkId);
   try {
     const newReview = await Review.query().insertAndFetch({
-      name,
-      location,
-      description,
       rating,
-      picture,
+      comments,
       parkId,
     });
+    console.log(newReview);
     return res.status(201).json({ review: newReview });
   } catch (error) {
     if (error instanceof ValidationError) {

@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import translateServerErrors from "../services/translateServerErrors.js";
-import FormError from "./layout/FormError.js";
-import { Redirect } from "react-router-dom";
+import ErrorList from "./ErrorList.js";
 
-const NewParkForm = (props) => {
-  const [newPark, setNewPark] = useState({
-    name: "",
-    description: "",
-    location: "",
+const NewReviewForm = (props) => {
+  const [newReview, setNewReview] = useState({
     rating: "",
-    picture: "",
+    comments: "",
   });
-
   const [errors, setErrors] = useState([]);
-  const [shouldRedirect, setShouldRedirect] = useState(false);
 
-  const postPark = async (newParkData) => {
+  // This post request should live in the park show page.
+  const postReview = async (newReviewData) => {
     try {
-      const response = await fetch(`/api/v1/parks`, {
+      const parkId = props.parkId;
+      const response = await fetch(`/api/v1/parks/${parkId}/reviews`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
-        body: JSON.stringify(newParkData),
+        body: JSON.stringify(newReviewData),
       });
       if (!response.ok) {
         if (response.status === 422) {
@@ -36,8 +32,8 @@ const NewParkForm = (props) => {
         }
       } else {
         const body = await response.json();
-        console.log("posted successfully", body);
-        setShouldRedirect(true);
+        const updatedReviews = park.reviews.concat(body.review);
+        setNewReview({ ...park, reviews: updatedReviews });
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
@@ -45,73 +41,32 @@ const NewParkForm = (props) => {
   };
 
   const handleInputChange = (event) => {
-    setNewPark({
-      ...newPark,
+    setNewReview({
+      ...newReview,
       [event.currentTarget.name]: event.currentTarget.value,
     });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    postPark(newPark);
+    postReview(newReview);
     clearForm();
   };
 
   const clearForm = () => {
-    setNewPark({
-      name: "",
-      description: "",
-      location: "",
+    setNewReview({
       rating: "",
-      picture: "",
+      comments: "",
     });
   };
 
-  if (shouldRedirect) {
-    return <Redirect to="/parks" />;
-  }
-
   return (
     <div className="callout">
-      <h1>Add a Park to this Page</h1>
+      <h1>Add a review for this park</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            onChange={handleInputChange}
-            value={newPark.name}
-          />
-          <FormError error={errors.name} />
-        </label>
-
-        <label>
-          Description (Optional):
-          <input
-            type="text"
-            name="description"
-            placeholder="Description"
-            onChange={handleInputChange}
-            value={newPark.description}
-          />
-        </label>
-
-        <label>
-          Location:
-          <input
-            type="text"
-            name="location"
-            placeholder="Location"
-            onChange={handleInputChange}
-            value={newPark.location}
-          />
-          <FormError error={errors.location} />
-        </label>
-
-        <label>
           Rating:
-          <select name="rating" onChange={handleInputChange} value={newPark.rating}>
+          <select name="rating" onChange={handleInputChange} value={newReview.rating}>
             <option value=" "></option>
             <option value="1">1 Star</option>
             <option value="1.5">1.5 Stars</option>
@@ -123,19 +78,20 @@ const NewParkForm = (props) => {
             <option value="4.5">4.5 Stars </option>
             <option value="5">5 Stars </option>
           </select>
-          <FormError error={errors.rating} />
         </label>
 
         <label>
-          Picture:
+          Comments:
           <input
             type="text"
-            name="picture"
-            placeholder="Picture"
+            name="comments"
             onChange={handleInputChange}
-            value={newPark.picture}
+            value={newReview.comments}
           />
         </label>
+        <div>
+          <ErrorList errors={errors} />
+        </div>
 
         <div className="button-group">
           <input className="button" type="submit" value="Submit" />
@@ -145,4 +101,4 @@ const NewParkForm = (props) => {
   );
 };
 
-export default NewParkForm;
+export default NewReviewForm;
