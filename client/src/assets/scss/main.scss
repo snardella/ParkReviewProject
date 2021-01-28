@@ -5,10 +5,65 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 :root {
-  -moz-tab-size: 4;
-  tab-size: 4;
+    -moz-tab-size: 4;
+    tab-size: 4;
+}
+
+.tile-image {
+    width: 800px;
+    height: 600px;
+    margin-left: 20px;
+}
+
+.showpage-pic {
+    width: auto;
+    height: auto;
+    margin-left: 20px;
+    position: relative;
+}
+
+.park-list-title {
+    text-align: center;
+}
+
+.show-page-title {
+    text-align: center;
+}
+
+body {
+    font-family: "Lucida Console", "Courier New", monospace;
+    background-color: #dbebd0;
+}
+
+.callout {
+    background-color: #CBDFBD;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Lucida Console", "Courier New", monospace;
+    margin-left: 20px;
+    color: white;
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+.module {
+    position: absolute;
+    bottom: 100px;
+    left: 50px;
+    width: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+.image {
+    position: relative;
 }
