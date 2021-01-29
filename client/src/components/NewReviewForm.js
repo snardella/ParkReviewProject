@@ -9,7 +9,6 @@ const NewReviewForm = (props) => {
   });
   const [errors, setErrors] = useState([]);
 
-  // This post request should live in the park show page.
   const postReview = async (newReviewData) => {
     try {
       const parkId = props.parkId;
@@ -31,11 +30,9 @@ const NewReviewForm = (props) => {
           throw error;
         }
       } else {
-        
         const body = await response.json();
         console.log("posted successfully", body)
-        //const updatedReviews = park.reviews.concat(body.review);
-        //setNewReview({ ...park, reviews: updatedReviews });
+        props.getReviews()
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
