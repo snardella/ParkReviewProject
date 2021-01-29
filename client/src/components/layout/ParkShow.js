@@ -32,7 +32,7 @@ const ParkShow = props => {
             <h5>
               <span>
                 {park.location}<br/>
-                Average rating: {park.rating}<br/>
+                Average rating: {park.averageRating}<br/>
               </span>
             </h5>
             <br></br>

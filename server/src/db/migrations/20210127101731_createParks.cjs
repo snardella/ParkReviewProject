@@ -11,7 +11,6 @@ exports.up = async (knex) => {
     table.string("name").notNullable()
     table.string("location").notNullable()
     table.string("description")
-    table.float("rating").notNullable()
     table.string("picture", 1000000)
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())

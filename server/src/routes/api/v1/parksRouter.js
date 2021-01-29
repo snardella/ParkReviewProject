@@ -3,13 +3,15 @@ import Park from "../../../models/Park.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import objection from "objection"
 const { ValidationError } = objection
+import ParkSerializer from "../../../serializer/ParkSerializer.js"
 
 const parksRouter = new express.Router();
 
 parksRouter.get("/", async (req, res) => {
   try {
     const parks = await Park.query()
-    return res.status(200).json({ parks: parks })
+    const serializedParks = parks.map((park) => ParkSerializer.showData(park))
+    return res.status(200).json({ parks: serializedParks })
   } catch(error) {
     return res.status(500).json({ errors: error })
   }
@@ -19,7 +21,8 @@ parksRouter.get("/:id", async (req,res) => {
 const parkId = req.params.id;
   try {
     const park = await Park.query().findById(parkId);
-    return res.status(200).json({ park: park  })
+    const serializedPark = ParkSerializer.showData(park)
+    return res.status(200).json({ park: serializedPark  })
   } catch (error) {
     return res.status(500).json({ errors: error})
   }
