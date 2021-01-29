@@ -3,12 +3,17 @@ import NewReviewForm from "../NewReviewForm.js";
 import ReviewTile from "./ReviewTile.js"
 
 const ParkShow = (props) => {
-  const [park, setPark] = useState({});
-  const [reviews, setReviews] = useState([])
+  const [park, setPark] = useState({
+    name: "",
+    picture: "",
+    location: "",
+    description: "",
+    rating: "",
+    reviews: []
+  });
 
   const getPark = async () => {
     const parkId = props.match.params.id;
-
     try {
       const response = await fetch(`/api/v1/parks/${parkId}`);
       if (!response.ok) {
@@ -46,7 +51,6 @@ const ParkShow = (props) => {
         {allTheReviews}
       <NewReviewForm 
         parkId={park.id} 
-        getReviews={getReviews}
       />
     </div>
   );
