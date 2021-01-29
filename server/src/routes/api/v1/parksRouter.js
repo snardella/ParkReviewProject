@@ -1,7 +1,7 @@
 import express from "express";
-import Park from "../../../models/Park.js";
 import cleanUserInput from "../../../services/cleanUserInput.js";
 import objection from "objection";
+import Park from "../../../models/Park.js";
 import parkReviewsRouter from "./parkReviewsRouter.js";
 const { ValidationError } = objection;
 
@@ -22,7 +22,11 @@ parksRouter.get("/:id", async (req,res) => {
 const parkId = req.params.id;
   try {
     const park = await Park.query().findById(parkId);
-    return res.status(200).json({ park: park  })
+    park.reviews = await park.$relatedQuery("reviews");
+    for (let i = 0; i < park.reviews.length; i++) {
+        park.reviews[i].user = await park.reviews[i].$relatedQuery("user")
+    }
+    return res.status(200).json({ park: park })
   } catch (error) {
     return res.status(500).json({ errors: error})
   }
@@ -51,7 +55,5 @@ parksRouter.get("/:id", async (req, res) => {
     return res.status(500).json({ errors: error });
   }
 });
-
-
 
 export default parksRouter;

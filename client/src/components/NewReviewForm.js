@@ -31,7 +31,6 @@ const NewReviewForm = (props) => {
         }
       } else {
         const body = await response.json();
-        console.log("posted successfully", body)
         props.getReviews()
       }
     } catch (error) {

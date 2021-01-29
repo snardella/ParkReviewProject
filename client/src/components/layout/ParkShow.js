@@ -23,28 +23,11 @@ const ParkShow = (props) => {
     }
   };
 
-  const getReviews = async () => {
-    const parkId = props.match.params.id;
-    try {
-      const response = await fetch(`/api/v1/reviews/${parkId}`);
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`;
-        const error = new Error(errorMessage);
-        throw error;
-      }
-      const body = await response.json();
-      setReviews(body.reviews)
-    } catch (error) {
-      console.error(`Err in fetch: ${error.message}`);
-    }
-  }
-
   useEffect(() => {
-    getPark(),
-    getReviews()
+    getPark()
   }, []);
 
-  const allTheReviews = reviews.map(review => {
+  const allTheReviews = park.reviews.map(review => {
     return (
       <ReviewTile 
         key={review.id}
