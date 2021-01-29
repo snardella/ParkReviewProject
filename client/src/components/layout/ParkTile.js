@@ -7,12 +7,15 @@ const ParkTile = (props) => {
   return(
     <div className="callout small-10 small-centered columns">
       <Link to={`/parks/${id}`}>
-        <h3>{name}</h3>
+        <h2>{name}</h2>
       </Link>
-      <h4>{location}</h4>
+      <h3>{location}</h3>
       <img className="tile-image" src={picture}/>
-      <h4>{description}</h4>
-      <h4>Average rating: {averageRating}</h4>
+      <aside className="index-description">
+        <h3>{description}</h3>
+        <h3>Average rating: {averageRating}</h3>
+      </aside>
+
     </div>
   )
 }
