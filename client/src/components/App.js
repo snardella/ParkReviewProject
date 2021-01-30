@@ -7,9 +7,9 @@ import "../assets/scss/main.scss";
 import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
-import UserProfile from "./UserProfile"
-import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
-import NewParkForm from "./NewParkForm"
+import UserProfile from "./UserProfile";
+import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
+import NewParkForm from "./NewParkForm";
 import ParkList from "./layout/ParkList.js";
 import ParkShow from "./layout/ParkShow.js";
 
@@ -25,9 +25,9 @@ const App = (props) => {
       });
   }, []);
 
-  let greeting = "Welcome to Parkview"
-  if(currentUser) {
-    greeting += `, ${currentUser.email}`
+  let greeting = "Welcome to Parkview";
+  if (currentUser) {
+    greeting += `, ${currentUser.email}`;
   }
 
   return (
@@ -38,11 +38,12 @@ const App = (props) => {
           <h2>{greeting}</h2>
         </Route>
         <Route exact path="/parks" component={ParkList} />
-        <AuthenticatedRoute exact path="/parks/new" component={NewParkForm} user={currentUser} />
         <Route exact path="/parks/:id" component={ParkShow} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
+
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
+        <AuthenticatedRoute exact path="/new" component={NewParkForm} user={currentUser} />
       </Switch>
     </Router>
   );
