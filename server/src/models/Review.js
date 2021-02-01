@@ -8,13 +8,14 @@ class Review extends Model {
   static get relationMappings() {
     const Park = require("./Park.js");
     const User = require("./User.js");
+    
     return {
       park: {
         relation: Model.BelongsToOneRelation,
         modelClass: Park,
         join: {
           from: "reviews.parkId",
-          to: "park.id",
+          to: "parks.id",
         },
       },
       user: {

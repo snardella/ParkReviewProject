@@ -3,40 +3,11 @@ import translateServerErrors from "../services/translateServerErrors.js";
 import ErrorList from "./ErrorList.js";
 
 const NewReviewForm = (props) => {
+  const [errors, setErrors] = useState([]);
   const [newReview, setNewReview] = useState({
     rating: "",
     comments: "",
   });
-  const [errors, setErrors] = useState([]);
-
-  const postReview = async (newReviewData) => {
-    try {
-      const parkId = props.parkId;
-      const response = await fetch(`/api/v1/parks/${parkId}/reviews`, {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(newReviewData),
-      });
-      if (!response.ok) {
-        if (response.status === 422) {
-          const body = await response.json();
-          const newErrors = translateServerErrors(body.errors);
-          return setErrors(newErrors);
-        } else {
-          const errorMessage = `${response.status} (${response.statusText})`;
-          const error = new Error(errorMessage);
-          throw error;
-        }
-      } else {
-        const body = await response.json();
-        props.getReviews()
-      }
-    } catch (error) {
-      console.error(`Error in fetch: ${error.message}`);
-    }
-  };
 
   const handleInputChange = (event) => {
     setNewReview({
@@ -45,9 +16,9 @@ const NewReviewForm = (props) => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    postReview(newReview);
+    await props.postReview(newReview);
     clearForm();
   };
 

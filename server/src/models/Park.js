@@ -29,7 +29,7 @@ class Park extends unique(Model) {
         modelClass: User,
         join: {
           from: "parks.userId",
-          to: "user.id",
+          to: "users.id",
         },
       },
     };
