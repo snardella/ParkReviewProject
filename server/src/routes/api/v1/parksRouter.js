@@ -44,8 +44,8 @@ parksRouter.post("/", async (req, res) => {
 
   try {
     const newPark = await Park.query().insertAndFetch(formInput);
-
-    return res.status(201).json({ park: newPark });
+    const serializedPark = await ParkSerializer.showData(newPark);
+    return res.status(201).json({ park: serializedPark });
   } catch (error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data });
