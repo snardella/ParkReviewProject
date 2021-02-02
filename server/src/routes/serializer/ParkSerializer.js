@@ -1,27 +1,62 @@
+import ReviewSerializer from "./ReviewSerializer.js";
+
 class ParkSerializer {
-    static async showData(park) {
-        const allowedAttributes = ["id", "name", "location", "description", "picture"];
+  static async showData(park) {
+    const allowedAttributes = ["id", "name", "location", "description", "picture"];
 
-        let serializedPark = {};
-        for (const attribute of allowedAttributes) {
-            serializedPark[attribute] = park[attribute];
-        }
-        serializedPark.reviews = await park.$relatedQuery("reviews")
-        for (let i = 0; i < serializedPark.reviews.length; i++) {
-            serializedPark.reviews[i].user = await serializedPark.reviews[i].$relatedQuery("user")
-        }
-        const mappedRatings = serializedPark.reviews.map((review) => {
-            const rating = review.rating
-            return rating
-        })
-        debugger
-        const summedRatings = mappedRatings.reduce((acc, curr) => acc + curr)
-        const averageRating = summedRatings / mappedRatings.length
-
-        serializedPark.averageRating = averageRating
-
-        return serializedPark;
+    let serializedPark = {};
+    for (const attribute of allowedAttributes) {
+      serializedPark[attribute] = park[attribute];
     }
+
+    const reviews = await park.$relatedQuery("reviews");
+    serializedPark.reviews = await Promise.all(
+      reviews.map((review) => {
+        return ReviewSerializer.showData(review);
+      })
+    );
+
+    const mappedRatings = serializedPark.reviews.map((review) => {
+      const rating = review.rating;
+      return rating;
+    });
+
+    if (mappedRatings.length !== 0) {
+      const summedRatings = mappedRatings.reduce((acc, curr) => acc + curr);
+      const averageRating = summedRatings / mappedRatings.length;
+      serializedPark.averageRating = averageRating;
+    }
+
+    return serializedPark;
+  }
+
+  static async showDetails(park) {
+    const allowedAttributes = ["id", "name", "location", "description", "picture"];
+
+    let serializedPark = {};
+    for (const attribute of allowedAttributes) {
+      serializedPark[attribute] = park[attribute];
+    }
+    const reviews = await park.$relatedQuery("reviews");
+    serializedPark.reviews = await Promise.all(
+      reviews.map((review) => {
+        return ReviewSerializer.showData(review);
+      })
+    );
+
+    const mappedRatings = serializedPark.reviews.map((review) => {
+      const rating = review.rating;
+      return rating;
+    });
+
+    if (mappedRatings.length !== 0) {
+      const summedRatings = mappedRatings.reduce((acc, curr) => acc + curr);
+      const averageRating = summedRatings / mappedRatings.length;
+      serializedPark.averageRating = averageRating;
+    }
+
+    return serializedPark;
+  }
 }
 
 export default ParkSerializer;

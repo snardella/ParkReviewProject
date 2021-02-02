@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import translateServerErrors from "../services/translateServerErrors.js";
 import FormError from "./layout/FormError.js";
-import { Redirect } from "react-router-dom";
 
 const NewParkForm = (props) => {
   const [newPark, setNewPark] = useState({
@@ -36,26 +36,26 @@ const NewParkForm = (props) => {
         }
       } else {
         const body = await response.json();
-        console.log("posted successfully", body)
-        setShouldRedirect(true)
+        console.log("posted successfully", body);
+        setShouldRedirect(true);
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     setNewPark({
       ...newPark,
-      [event.currentTarget.name]: event.currentTarget.value
-    })
-  }
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
 
-  const handleSubmit = event => {
-    event.preventDefault()
-    postPark(newPark)
-    clearForm()
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    postPark(newPark);
+    clearForm();
+  };
 
   const clearForm = () => {
     setNewPark({
@@ -64,8 +64,8 @@ const NewParkForm = (props) => {
       location: "",
       rating: "",
       picture: "",
-    })
-  }
+    });
+  };
 
   if (shouldRedirect) {
     return <Redirect to="/parks" />;

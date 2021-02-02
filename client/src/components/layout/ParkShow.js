@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import NewReviewForm from "../NewReviewForm.js";
-import ReviewTile from "./ReviewTile.js"
+import ReviewTile from "./ReviewTile.js";
 
 const ParkShow = (props) => {
-  
   const [park, setPark] = useState({
     name: "",
     picture: "",
     location: "",
     description: "",
     rating: "",
-    reviews: []
+    reviews: [],
   });
 
   const getPark = async () => {
@@ -51,7 +50,11 @@ const ParkShow = (props) => {
         }
       } else {
         const body = await response.json();
-        getPark()
+        setPark({
+          ...park,
+          reviews: [...park.reviews, body.review],
+        });
+        getPark();
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
@@ -59,17 +62,12 @@ const ParkShow = (props) => {
   };
 
   useEffect(() => {
-    getPark()
+    getPark();
   }, []);
-  
-  const allTheReviews = park.reviews.map(review => {
-    return (
-      <ReviewTile 
-        key={review.id}
-        review={review}
-      />
-    )
-  })
+
+  const allTheReviews = park.reviews.map((review) => {
+    return <ReviewTile key={review.id} review={review} />;
+  });
 
   return (
     <div>
@@ -78,11 +76,8 @@ const ParkShow = (props) => {
       <h5>{park.location}</h5>
       <p>{park.description}</p>
       <p>Average Rating: {park.averageRating}</p>
-        {allTheReviews}
-      <NewReviewForm 
-        parkId={park.id} 
-        postReview={postReview}
-      />
+      <NewReviewForm parkId={park.id} postReview={postReview} />
+      {allTheReviews}
     </div>
   );
 };
