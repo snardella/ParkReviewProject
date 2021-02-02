@@ -35,8 +35,6 @@ const NewParkForm = (props) => {
           throw error;
         }
       } else {
-        const body = await response.json();
-        console.log("posted successfully", body);
         setShouldRedirect(true);
       }
     } catch (error) {

@@ -10,6 +10,7 @@ const ParkShow = (props) => {
     description: "",
     rating: "",
     reviews: [],
+    averageRating: null,
   });
 
   const getPark = async () => {
@@ -52,9 +53,9 @@ const ParkShow = (props) => {
         const body = await response.json();
         setPark({
           ...park,
+          averageRating: body.park.averageRating,
           reviews: [...park.reviews, body.review],
         });
-        getPark();
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);

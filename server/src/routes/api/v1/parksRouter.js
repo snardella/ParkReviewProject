@@ -37,11 +37,15 @@ parksRouter.get("/:id", async (req, res) => {
 });
 
 parksRouter.post("/", async (req, res) => {
+  const user = req.user.id;
   const { body } = req;
   const formInput = cleanUserInput(body);
+  formInput.userId = user;
+
   try {
     const newPark = await Park.query().insertAndFetch(formInput);
-    return res.status(201).json({ park: newPark });
+    const serializedPark = await ParkSerializer.showData(newPark);
+    return res.status(201).json({ park: serializedPark });
   } catch (error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data });

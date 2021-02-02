@@ -7,9 +7,9 @@ import "../assets/scss/main.scss";
 import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
-import UserProfile from "./UserProfile"
-import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
-import NewParkForm from "./NewParkForm"
+import UserProfile from "./UserProfile";
+import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
+import NewParkForm from "./NewParkForm";
 import ParkList from "./layout/ParkList.js";
 import ParkShow from "./layout/ParkShow.js";
 
@@ -25,9 +25,9 @@ const App = (props) => {
       });
   }, []);
 
-  let greeting = "Welcome to Parkview"
-  if(currentUser) {
-    greeting += `, ${currentUser.email}`
+  let greeting = "Welcome to Parkview";
+  if (currentUser) {
+    greeting += `, ${currentUser.email}`;
   }
 
   return (
