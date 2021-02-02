@@ -2,6 +2,8 @@ import express from "express";
 import objection from "objection";
 const { ValidationError } = objection;
 
+import Park from "../../../models/Park.js";
+import ParkSerializer from "../../serializer/ParkSerializer.js";
 import { Review } from "../../../models/index.js";
 import cleanUserInput from "../../../services/cleanUserInput.js";
 import ReviewSerializer from "../../serializer/ReviewSerializer.js";
@@ -27,6 +29,32 @@ parkReviewsRouter.post("/", async (req, res) => {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data });
     }
+    return res.status(500).json({ errors: error });
+  }
+});
+
+parkReviewsRouter.delete("/:reviewId", async (req, res) => {
+  try {
+    const parkId = req.params.parkId;
+    const reviewId = req.params.reviewId;
+    await Review.query().deleteById(reviewId);
+    const park = await Park.query().findById(parkId);
+    const serializedPark = await ParkSerializer.showDetails(park);
+    return res.status(204).json({ serializedPark });
+  } catch (error) {
+    return res.status(500).json({ errors: error });
+  }
+});
+
+parkReviewsRouter.patch("/:reviewId", async (req, res) => {
+  try {
+    const parkId = req.params.parkId;
+    const reviewId = req.params.reviewId;
+    await Review.query().patchAndFetchById(reviewId);
+    const park = await Park.query().findById(parkId);
+    const serializedPark = await ParkSerializer.showDetails(park);
+    return res.status(201).json({ serializedPark });
+  } catch (error) {
     return res.status(500).json({ errors: error });
   }
 });

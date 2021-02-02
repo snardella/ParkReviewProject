@@ -65,8 +65,67 @@ const ParkShow = (props) => {
     getPark();
   }, []);
 
+  const deleteReview = async (review) => {
+    try {
+      const parkId = props.match.params.id;
+      const reviewId = review.id;
+      const response = await fetch(`/api/v1/parks/${parkId}/reviews/${reviewId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        if (response.status === 422) {
+          const body = await response.json();
+          const newErrors = translateServerErrors(body.errors);
+          return setErrors(newErrors);
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          const error = new Error(errorMessage);
+          throw error;
+        }
+      } else {
+        console.log("deleted...");
+        getPark();
+      }
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
+
+  const updateReview = async (review) => {
+    try {
+      const parkId = props.match.params.id;
+      const reviewId = review.id;
+      const response = await fetch(`/api/v1/parks/${parkId}/reviews/${reviewId}`, {
+        method: "PATCH",
+      });
+      if (!response.ok) {
+        if (response.status === 422) {
+          const body = await response.json();
+          const newErrors = translateServerErrors(body.errors);
+          return setErrors(newErrors);
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          const error = new Error(errorMessage);
+          throw error;
+        }
+      } else {
+        console.log("updated...");
+        getPark();
+      }
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
+
   const allTheReviews = park.reviews.map((review) => {
-    return <ReviewTile key={review.id} review={review} />;
+    return (
+      <ReviewTile
+        key={review.id}
+        review={review}
+        deleteReview={deleteReview}
+        updatedReview={updateReview}
+      />
+    );
   });
 
   return (

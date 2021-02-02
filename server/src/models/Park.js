@@ -24,7 +24,7 @@ class Park extends unique(Model) {
           to: "reviews.parkId",
         },
       },
-      users: {
+      user: {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
         join: {
