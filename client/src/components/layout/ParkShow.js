@@ -98,6 +98,10 @@ const ParkShow = (props) => {
       const reviewId = review.id;
       const response = await fetch(`/api/v1/parks/${parkId}/reviews/${reviewId}`, {
         method: "PATCH",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(review),
       });
       if (!response.ok) {
         if (response.status === 422) {
@@ -124,7 +128,7 @@ const ParkShow = (props) => {
         key={review.id}
         review={review}
         deleteReview={deleteReview}
-        updatedReview={updateReview}
+        updateReview={updateReview}
       />
     );
   });

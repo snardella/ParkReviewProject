@@ -41,7 +41,7 @@ parkReviewsRouter.delete("/:reviewId", async (req, res) => {
     await Review.query().deleteById(reviewId);
     const park = await Park.query().findById(parkId);
     const serializedPark = await ParkSerializer.showDetails(park);
-    return res.status(204).json({ serializedPark });
+    return res.status(204).json({ park: serializedPark });
   } catch (error) {
     return res.status(500).json({ errors: error });
   }
@@ -49,12 +49,14 @@ parkReviewsRouter.delete("/:reviewId", async (req, res) => {
 
 parkReviewsRouter.patch("/:reviewId", async (req, res) => {
   try {
+    debugger;
     const parkId = req.params.parkId;
     const reviewId = req.params.reviewId;
-    await Review.query().patchAndFetchById(reviewId);
+    const comments = req.body.comments;
+    await Review.query().patchAndFetchById(reviewId, { comments: comments });
     const park = await Park.query().findById(parkId);
     const serializedPark = await ParkSerializer.showDetails(park);
-    return res.status(201).json({ serializedPark });
+    return res.status(201).json({ park: serializedPark });
   } catch (error) {
     return res.status(500).json({ errors: error });
   }
