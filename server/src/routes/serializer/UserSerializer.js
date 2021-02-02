@@ -1,6 +1,6 @@
 class UserSerializer {
   static showData(user) {
-    const allowedAttributes = ["email", "userName"];
+    const allowedAttributes = ["id", "email", "userName"];
 
     let serializedUser = {};
     for (const attribute of allowedAttributes) {

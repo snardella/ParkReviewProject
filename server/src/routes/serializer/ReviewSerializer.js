@@ -2,7 +2,7 @@ import UserSerializer from "./UserSerializer.js";
 
 class ReviewSerializer {
   static async showData(review) {
-    const allowedAttributes = ["comments", "rating"];
+    const allowedAttributes = ["id", "comments", "rating"];
 
     let serializedReview = {};
     for (const attribute of allowedAttributes) {
