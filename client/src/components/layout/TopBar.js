@@ -16,14 +16,14 @@ const TopBar = ({ user }) => {
 
   const authenticatedListItems = [
     <li key="profile">
-    <Link to="/profile">Profile Page</Link>
+      <Link to="/profile">Profile Page</Link>
     </li>,
     <li>
       <Link to="/parks/new">Add a new Park!</Link>
     </li>,
     <li key="sign-out">
       <SignOutButton />
-    </li>
+    </li>,
   ];
 
   return (

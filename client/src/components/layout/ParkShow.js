@@ -94,7 +94,7 @@ const ParkShow = (props) => {
             });
           }
         });
-        let sum = 0;
+        /* let sum = 0;
         park.reviews.forEach((existingReview) => {
           sum += existingReview.rating;
         });
@@ -102,7 +102,7 @@ const ParkShow = (props) => {
         setPark({
           ...park,
           averageRating: average,
-        });
+        }); */
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
@@ -130,6 +130,13 @@ const ParkShow = (props) => {
           const error = new Error(errorMessage);
           throw error;
         }
+      } else {
+        const body = await response.json();
+        setPark({
+          ...park,
+          reviews: body.park.reviews,
+        });
+        return;
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
