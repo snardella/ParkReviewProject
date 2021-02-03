@@ -36,7 +36,6 @@ parkReviewsRouter.post("/", async (req, res) => {
 
 parkReviewsRouter.delete("/:reviewId", async (req, res) => {
   try {
-    const parkId = req.params.parkId;
     const reviewId = req.params.reviewId;
     await Review.query().deleteById(reviewId);
     return res.status(204).json({});
@@ -55,6 +54,9 @@ parkReviewsRouter.patch("/:reviewId", async (req, res) => {
     const serializedPark = await ParkSerializer.showDetails(park);
     return res.status(201).json({ park: serializedPark });
   } catch (error) {
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error.data });
+    }
     return res.status(500).json({ errors: error });
   }
 });

@@ -130,9 +130,6 @@ const ParkShow = (props) => {
           const error = new Error(errorMessage);
           throw error;
         }
-      } else {
-        console.log("updated...");
-        getPark();
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
