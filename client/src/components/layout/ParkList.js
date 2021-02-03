@@ -32,9 +32,9 @@ const ParkList = (props) => {
   }) 
   
   return (
-    <div>
-      <h1>All parks</h1>
-        <ul>
+    <div className="grid-container">
+      <h1 className="park-list-title">All Parks</h1>
+        <ul >
           {parksListItems}
         </ul>
     </div>
