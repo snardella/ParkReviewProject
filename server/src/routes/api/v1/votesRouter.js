@@ -6,10 +6,12 @@ const { ValidationError } = objection
 const votesRouter = new express.Router();
 //FIGURE OUT WHAT IS GETTING SENT BACK?
 votesRouter.post("/", async(req, res) => {
-    console.log(req.body)
-    const score = req.body.score
+    const voteTotal = req.body.vote
+    const parkId = req.body.parkId
+    const userId = req.user.id
     try {
-        const vote = await Vote.query().insertAndFetch({ score });
+        const vote = await Vote.query().insertAndFetch({voteTotal, parkId, userId});
+        console.log("Vote", vote)
         return res.status(201).json({ vote: vote })
     } catch (error) {
         if (error instanceof ValidationError) {

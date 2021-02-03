@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import ParkTile from "./ParkTile.js"
 
 const ParkList = (props) => {
+
   const [parks, setParks] = useState([])
 
 
@@ -15,6 +16,7 @@ const ParkList = (props) => {
         throw(error)
       }
       const body = await response.json()
+      
       setParks(body.parks)
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -46,7 +48,6 @@ const ParkList = (props) => {
           }
         } else {
           const body = await response.json()
-          console.log(body)
           // const updatedVotes = species.pets.concat(body.pet)
           // setErrors([])
           // setSpecies({...species, pets: updatedPets})
@@ -63,6 +64,7 @@ const ParkList = (props) => {
         key={parksItem.id} 
         parkData= {parksItem}
         postVote={postVote}
+    
       />
   }) 
   

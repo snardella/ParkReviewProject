@@ -13,7 +13,11 @@ const ParkTile = (props) => {
       <h5>{location}</h5>
       <p>{description}</p>
       <p>{rating}</p>
-      <Vote postVote={props.postVote}/>
+      <h5>Score: </h5>
+      <Vote 
+        postVote={props.postVote} 
+        parkId={id}
+      />
     </div>
   )
 }

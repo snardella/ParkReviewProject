@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 const Vote = (props) => {
+ 
   // Initial state of the component.
   const [vote, setVote] = useState( {
-    score: 0,
+    vote: 0,
+    parkId: props.parkId
   });
   
   
@@ -20,37 +22,35 @@ const Vote = (props) => {
   //   });
   // }
 
-  const toggleUpvote = async () => {
-    setVote(vote => ({
-      score: vote.score === 1 ? 0 : 1
-    }))
+  const toggleUpvote = async (event) => {
+    event.preventDefault()
+    setVote({
+      vote: vote + 1,
+      parkId: props.parkId,
+    })
     await props.postVote(vote)
   }
 
-  const toggleDownvote = async () => {
-    setVote(vote => ({
-      score: vote.score === -1 ? 0 : -1
-    }))
+  const toggleDownvote = async (event) => {
+    event.preventDefault()
+    setVote({
+      vote: vote - 1,
+      parkId: props.parkId,
+    })
     await props.postVote(vote)
   }
-
   return (
       <main>
-        <h1>{vote.score}</h1>
         <button
           id="upvote"
-          className={vote.score === 1 ? "active" : undefined}
+          className={vote.vote === 1 ? "active" : undefined}
           onClick={toggleUpvote}
-        >
-          Upvote
-        </button>
+        >Upvote</button>
         <button
           id="downvote"
-          className={vote.score === -1 ? "active" : undefined}
+          className={vote.vote === -1 ? "active" : undefined}
           onClick={toggleDownvote}
-        >
-          Downvote
-        </button>
+        >Downvote</button>
       </main>
     );
   }

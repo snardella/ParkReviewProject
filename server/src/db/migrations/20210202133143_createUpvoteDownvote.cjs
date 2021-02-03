@@ -7,14 +7,24 @@
  */
 exports.up = async(knex) => {
     return knex.schema.createTable("votes", (table) => {
-      table.bigIncrements("id")
-      table.tinyint("upVote")
-      table.tinyint("downVote")
-      table.integer("score")
-      table.integer("parkId").unsigned().index().notNullable().references("parks.id")
-      table.integer("userId").unsigned().index().notNullable().references("users.id")
-      table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
-      table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())
+        table.bigIncrements("id")
+        table.bigInteger("voteTotal")
+        table.integer("parkId")
+            .unsigned()
+            .index()
+            .notNullable()
+            .references("parks.id")
+        table.integer("userId")
+            .unsigned()
+            .index()
+            .notNullable()
+            .references("users.id")
+        table.timestamp("createdAt")
+            .notNullable()
+            .defaultTo(knex.fn.now())
+        table.timestamp("updatedAt")
+            .notNullable()
+            .defaultTo(knex.fn.now())
     })
 }
 
@@ -22,5 +32,5 @@ exports.up = async(knex) => {
  * @param {Knex} knex
  */
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists("votes")
+    return knex.schema.dropTableIfExists("votes")
 }

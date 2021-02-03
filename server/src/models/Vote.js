@@ -6,11 +6,9 @@ class Vote extends Model {
     static getjsonSchema() {
         return {
             type: "object",
-            required: ['score'],
+            required: ['voteTotal'],
             properties: {
-                upVote: { type: ["integer", "string"] },
-                downVote: { type: ["integer", "string"] },
-                score: { type: ["integer", "string"] },
+                voteTotal: { type: ["integer", "string"] },
                 parkId: { type: ["integer", "string"] },
                 userId: { type: ["integer", "string"] }
             }
@@ -25,7 +23,7 @@ class Vote extends Model {
                 modelClass: Park,
                 join: {
                     from: "votes.parkId",
-                    to: "park.id",
+                    to: "parks.id",
                 }
             },
             User: {
