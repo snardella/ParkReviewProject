@@ -5,47 +5,48 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-    -moz-tab-size: 4;
-    tab-size: 4;
+  -moz-tab-size: 4;
+  tab-size: 4;
 }
 
 .tile-image {
-    width: 800px;
-    height: 600px;
-    margin-left: 20px;
-    border-radius: 1em;
+  width: 800px;
+  height: 600px;
+  margin-left: 20px;
+  border-radius: 1em;
 }
 
 .showpage-pic {
-    width: auto;
-    height: auto;
-    margin-left: 20px;
-    margin-top: 50px;
-    position: relative;
-    border-radius: 1em;
-    box-shadow: 10px 10px 8px #888888;
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin-left: 20px;
+  margin-top: 50px;
+
+  border-radius: 1em;
+  box-shadow: 10px 10px 8px #888888;
 }
 
 .park-list-title {
-    text-align: center;
-    font-size: 30pt;
+  text-align: center;
+  font-size: 30pt;
 }
 
-
 body {
-    font-family: "Lucida Console", "Courier New", monospace;
-    background-color: #f5f8f4;
+  font-family: "Lucida Console", "Courier New", monospace;
+  background-color: #f5f8f4;
 }
 
 .callout {
-    background-color: #CBDFBD;
-    border-radius: 1em;
-    margin-bottom: 20px;
-    box-shadow: 10px 10px 8px #888888;
+  align-items: center;
+  background-color: #cbdfbd;
+  border-radius: 1em;
+  margin-bottom: 20px;
+  box-shadow: 10px 10px 8px #888888;
 }
 
 h1,
@@ -53,36 +54,60 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: "Lucida Console", "Courier New", monospace;
-    margin-left: 20px;
-    font-weight: bold;
+  font-family: "Lucida Console", "Courier New", monospace;
+  margin-left: 20px;
+  font-weight: bold;
 }
 
 .module {
-    position: absolute;
-    bottom: 75px;
-    left: 50px;
-    width: 50%;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-    color: white;
+  position: absolute;
+  bottom: 75px;
+  left: 50px;
+  width: 50%;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  color: white;
 }
 
 .image {
-    position: relative;
+  position: relative;
 }
 
 .description {
-    font-size: 18pt;
-    margin-top: 25px;
-    margin-left: 40px;
+  font-size: 18pt;
+  margin-top: 25px;
+  margin-left: 40px;
 }
 
-.index-description{
-    border: solid black 1px;
-    border-radius: 0.2em;
-    margin-top: 10px;
-    margin-left: 20px;
-    width: 800px;
-    font-size: 18pt;
+.index-description {
+  border: solid black 1px;
+  border-radius: 0.2em;
+  margin-top: 10px;
+  margin-left: 20px;
+  width: 800px;
+  font-size: 18pt;
+}
+
+#user-profile-card {
+  margin-top: 20px;
+  text-align: center;
+  margin-left: 200px;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 0.2em;
+}
+
+#park-form-id {
+  margin-top: 30px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.centered-text {
+  margin-left: 2px;
+}
+
+.add-new-park {
+  font-size: xx-large;
+  font-weight: bold;
 }

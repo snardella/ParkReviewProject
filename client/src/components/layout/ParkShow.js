@@ -149,22 +149,26 @@ const ParkShow = (props) => {
 
   return (
     <div className="image grid-container small-10 small-centered columns">
-      <img className="showpage-pic" src={park.picture} />
-      <aside className="module">
-        <h1 className="showpage-title">{park.name}</h1>
-        <h5>
-          <span>
-            {park.location}
-            <br />
-            Average rating: {park.averageRating}
-            <br />
-          </span>
-        </h5>
-        <br></br>
-      </aside>
-      <h3>{park.description}</h3>
-      <NewReviewForm parkId={park.id} postReview={postReview} />
-      {allTheReviews}
+      <div className="image grid-container small-10 small-centered columns">
+        <img className="showpage-pic" src={park.picture} />
+        <aside className="module">
+          <h1 className="showpage-title">{park.name}</h1>
+          <h5>
+            <span>
+              {park.location}
+              <br />
+              Average rating: {park.averageRating}
+              <br />
+            </span>
+          </h5>
+          <br></br>
+        </aside>
+        <h3>{park.description}</h3>
+      </div>
+      <div>
+        <NewReviewForm parkId={park.id} postReview={postReview} />
+        {allTheReviews}
+      </div>
     </div>
   );
 };
