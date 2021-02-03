@@ -84,8 +84,25 @@ const ParkShow = (props) => {
           throw error;
         }
       } else {
-        console.log("deleted...");
-        getPark();
+        park.reviews.forEach((existingReview) => {
+          if (review.id === existingReview.id) {
+            let reviewArray = park.reviews;
+            reviewArray.splice(reviewArray.indexOf(existingReview), 1);
+            setPark({
+              ...park,
+              reviews: reviewArray,
+            });
+          }
+        });
+        let sum = 0;
+        park.reviews.forEach((existingReview) => {
+          sum += existingReview.rating;
+        });
+        let average = sum / park.reviews.length;
+        setPark({
+          ...park,
+          averageRating: average,
+        });
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
