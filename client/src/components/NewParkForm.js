@@ -1,20 +1,19 @@
-import React, { useState } from "react"
-import translateServerErrors from "../services/translateServerErrors.js"
-import FormError from "./layout/FormError.js"
-import {Redirect} from "react-router-dom"
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import translateServerErrors from "../services/translateServerErrors.js";
+import FormError from "./layout/FormError.js";
 
 const NewParkForm = (props) => {
-
   const [newPark, setNewPark] = useState({
     name: "",
     description: "",
     location: "",
     rating: "",
     picture: "",
-  })
+  });
 
-  const [errors, setErrors] = useState([])
-  const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [errors, setErrors] = useState([]);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const postPark = async (newParkData) => {
     try {
@@ -36,27 +35,25 @@ const NewParkForm = (props) => {
           throw error;
         }
       } else {
-        const body = await response.json();
-        console.log("posted successfully", body)
-        setShouldRedirect(true)
+        setShouldRedirect(true);
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     setNewPark({
       ...newPark,
-      [event.currentTarget.name]: event.currentTarget.value
-    })
-  }
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
 
-  const handleSubmit = event => {
-    event.preventDefault()
-    postPark(newPark)
-    clearForm()
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    postPark(newPark);
+    clearForm();
+  };
 
   const clearForm = () => {
     setNewPark({
@@ -65,17 +62,17 @@ const NewParkForm = (props) => {
       location: "",
       rating: "",
       picture: "",
-    })
-  }
+    });
+  };
 
   if (shouldRedirect) {
-    return <Redirect to="/parks" />
+    return <Redirect to="/parks" />;
   }
 
   return (
     <div className="callout">
       <h1>Add a Park to this Page</h1>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <label>
           Name:
           <input
@@ -113,7 +110,7 @@ const NewParkForm = (props) => {
 
         <label>
           Rating:
-          <select name="rating" onChange={handleInputChange} value={newPark.rating}> 
+          <select name="rating" onChange={handleInputChange} value={newPark.rating}>
             <option value=" "></option>
             <option value="1">1 Star</option>
             <option value="1.5">1.5 Stars</option>
@@ -144,7 +141,7 @@ const NewParkForm = (props) => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default NewParkForm
+export default NewParkForm;
