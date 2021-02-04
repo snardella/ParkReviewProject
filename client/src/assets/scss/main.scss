@@ -16,14 +16,16 @@
 .callout {
   width: 800px;
   margin: auto;
-  background-color: #DFEBD6;
+  background-color: #dfebd6;
   color: #6b9947;
 }
-label{
+label {
   color: #6b9947;
 }
 body {
   background-color: #faf9e4;
-
 }
 
+.invisible {
+  visibility: hidden;
+}

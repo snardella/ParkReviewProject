@@ -8,7 +8,7 @@ class ParkSeeder {
         location: "Medford, MA",
         description: "Wonderful public park for taking a leisurely hike",
         rating: "4.5",
-        picture: "N/A",
+        picture: "https://miro.medium.com/max/1200/1*faUffoe2QCOMqVhpxzpa7g.png",
         userId: "1",
       },
       {
@@ -16,7 +16,8 @@ class ParkSeeder {
         location: "Jamaica Plain, MA",
         description: "This is a lovely park with a beautiful pond! Great for a family walk!",
         rating: "4",
-        picture: "N/A",
+        picture:
+          "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/jamaica-pond-boat-house-boston-loriann-dantonio.jpg",
         userId: "1",
       },
       {
@@ -24,7 +25,7 @@ class ParkSeeder {
         location: "Boston, MA",
         description: "This is where 'Good Will Hunting' was filmed!!!",
         rating: "4",
-        picture: "N/A",
+        picture: "https://d21xlh2maitm24.cloudfront.net/bst/bostoncommon.jpg?mtime=20180503113829",
         userId: "1",
       },
       {
@@ -32,7 +33,8 @@ class ParkSeeder {
         location: "Jamaica Plain, MA",
         description: "A botanical garden Park",
         rating: "5",
-        picture: "N/A",
+        picture:
+          "https://arboretum.harvard.edu/wp-content/uploads/2020/08/Bussey_Hill_Aerial_Hetman.jpg",
         userId: "1",
       },
     ];
