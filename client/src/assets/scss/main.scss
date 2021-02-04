@@ -14,9 +14,14 @@
 }
 
 .tile-image {
-  width: 800px;
-  height: 600px;
-  margin-left: 20px;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  align-items: center;
+  width: auto;
+  height: auto;
   border-radius: 1em;
 }
 
@@ -24,35 +29,43 @@
   align-items: center;
   width: auto;
   height: auto;
-  margin-left: 20px;
-  margin-top: 50px;
-
+  margin-top: 20px;
+  margin-bottom: 10px;
   border-radius: 1em;
   box-shadow: 10px 10px 8px #888888;
 }
 
 .park-list-title {
+  font-size: 33pt;
+  font-style: Georgia, serif;
+  align-items: center;
+  width: auto;
+  height: auto;
   text-align: center;
-  font-size: 30pt;
+  font-weight: 900;
 }
 
 body {
-  font-family: "Lucida Console", "Courier New", monospace;
+  align-items: center;
+  width: auto;
+  height: auto;
   background-color: #f5f8f4;
 }
 
 .callout {
   align-items: center;
-  background-color: #cbdfbd;
+  width: auto;
+  height: auto;
+  background-color: #dbdbdb;
   border-radius: 1em;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   box-shadow: 10px 10px 8px #888888;
 }
 
-h1,
-h2,
-h3,
-h4,
+h1 {
+  font-style: helvetica neue;
+}
+
 h5 {
   font-family: "Lucida Console", "Courier New", monospace;
   margin-left: 20px;
@@ -60,13 +73,14 @@ h5 {
 }
 
 .module {
+  width: auto;
   position: absolute;
-  bottom: 75px;
+  bottom: 65px;
   left: 50px;
-  width: 50%;
-  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  background: rgba(51, 49, 49, 0.8);
   border-radius: 10px;
-  color: white;
+  color: rgb(246, 241, 241);
 }
 
 .image {
@@ -82,10 +96,11 @@ h5 {
 .index-description {
   border: solid black 1px;
   border-radius: 0.2em;
-  margin-top: 10px;
-  margin-left: 20px;
-  width: 800px;
+  align-items: center;
+  width: auto;
+  height: auto;
   font-size: 18pt;
+  margin-bottom: 10px;
 }
 
 #user-profile-card {
@@ -110,4 +125,52 @@ h5 {
 .add-new-park {
   font-size: xx-large;
   font-weight: bold;
+}
+
+#park-review-form {
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 1em;
+  box-shadow: 10px 10px 8px #888888;
+}
+
+aside {
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.title-location {
+  margin: auto;
+}
+
+.showpage-title {
+  margin-top: 10px;
+}
+
+.park-show-title {
+  align-items: center;
+  text-align: center;
+  width: auto;
+  height: auto;
+  font-weight: bolder;
+  font-family: Georgia, serif;
+}
+
+.park-show-location {
+  align-items: center;
+  text-align: center;
+  width: auto;
+  height: auto;
+}
+
+.park-tile-description {
+  align-items: center;
+  text-align: center;
+  width: auto;
+  height: auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
