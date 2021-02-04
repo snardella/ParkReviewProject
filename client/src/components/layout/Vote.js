@@ -1,54 +1,63 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
+
 
 const Vote = (props) => {
- 
+  //debugger
   // Initial state of the component.
-  const [vote, setVote] = useState( {
-    vote: 0,
-    parkId: props.parkId
-  });
+  let upVoteClass = undefined
+  let downVoteClass= undefined
   
-  
-  // const checkInput =(arg) => {
-  //   return vote === arg ? 0 : arg;
-  // }
-  // Method to change the state of the component, which the UI reflects "live".
-  // const makeVote = (type) => {
-  //   const input = checkInput(type)
-  //   setState({
-  //     vote: type,
-  //     score: state.score + type
-  //   });
-  // }
-
   const toggleUpvote = async (event) => {
+    
     event.preventDefault()
-    setVote({
-      vote: vote + 1,
-      parkId: props.parkId,
-    })
-    await props.postVote(vote)
+    if(props.currentVote.userId !== props.user.id){
+      await props.postVote({
+        vote: 1,
+        parkId: props.parkId,
+      })
+      upVoteClass = "active"
+    }
+    else if(props.currentVote.userId === props.user.id && props.currentVote.voteTotal === 1){
+      alert("You cannot vote twice in a row!")
+    } else {
+      await props.postVote({
+        vote: 1,
+        parkId: props.parkId,
+      })
+      upVoteClass = "active"
+    }
   }
 
   const toggleDownvote = async (event) => {
     event.preventDefault()
-    setVote({
-      vote: vote - 1,
-      parkId: props.parkId,
-    })
-    await props.postVote(vote)
+    if(props.currentVote.userId !== props.user.id){
+      await props.postVote({
+        vote: -1,
+        parkId: props.parkId,
+      })
+      downVoteClass = "active"
+    }
+    else if(props.currentVote.userId === props.user.id && props.currentVote.voteTotal === -1){
+      alert("You cannot vote twice in a row!")
+    } else {
+      await props.postVote({
+        vote: -1,
+        parkId: props.parkId,
+      })
+      downVoteClass = "active"
+    }
   }
+
   return (
       <main>
         <button
           id="upvote"
-          className={vote.vote === 1 ? "active" : undefined}
+          className={upVoteClass}
           onClick={toggleUpvote}
         >Upvote</button>
         <button
           id="downvote"
-          className={vote.vote === -1 ? "active" : undefined}
+          className={downVoteClass}
           onClick={toggleDownvote}
         >Downvote</button>
       </main>

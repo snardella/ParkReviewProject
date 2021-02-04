@@ -20,8 +20,12 @@ parksRouter.get("/", async(req, res) => {
             const serializedPark = await ParkSerializer.showData(park);
             serializedParks.push(serializedPark);
         }
+        serializedParks.sort((a, b) => {
+            return b.voteTotal - a.voteTotal
+        })
         return res.status(200).json({ parks: serializedParks });
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ errors: error });
     }
 });

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import ParkTile from "./ParkTile.js"
+import { withRouter } from "react-router"
 
 const ParkList = (props) => {
 
   const [parks, setParks] = useState([])
-
+  const [currentVote, setCurrentVote] = useState({})
 
   const getParks = async () => {
     try {
@@ -48,9 +49,10 @@ const ParkList = (props) => {
           }
         } else {
           const body = await response.json()
-          // const updatedVotes = species.pets.concat(body.pet)
-          // setErrors([])
-          // setSpecies({...species, pets: updatedPets})
+          setParks(body.parks)
+          setCurrentVote(body.vote)
+          
+  
         }
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -64,7 +66,8 @@ const ParkList = (props) => {
         key={parksItem.id} 
         parkData= {parksItem}
         postVote={postVote}
-    
+        currentVote={currentVote}
+        user={props.user}
       />
   }) 
   
@@ -78,4 +81,4 @@ const ParkList = (props) => {
   )
 }
 
-export default ParkList 
+export default withRouter(ParkList)
