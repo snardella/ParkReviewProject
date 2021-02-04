@@ -53,7 +53,7 @@ const ReviewTile = (props) => {
         <option value={5}>5 Stars </option>
       </select>
       <div className="button-group">
-      <input type="text" name="comment-text" value={review.comments} onChange={handleInputChange} />
+      <input type="text" name="comments" value={review.comments} onChange={handleInputChange} />
       <div className={buttonClassName}>
         <input type="button" className="button" value="Delete" onClick={deleteReviewHandler} />
       </div>

@@ -15,7 +15,7 @@ const ParkTile = (props) => {
             <h2 className="park-show-title">{name}</h2>
           </Link>
           <h4 className="park-show-location">{location}</h4>
-          <p className="park-tile-description">Average rating:    {averageRating}</p>
+          <p className="park-tile-description">Average rating: {averageRating}</p>
           <h5>Votes: {voteTotal}</h5>
           <Vote 
             postVote={props.postVote} 

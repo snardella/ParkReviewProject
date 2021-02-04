@@ -50,8 +50,6 @@ const ParkList = (props) => {
           const body = await response.json()
           setParks(body.parks)
           setCurrentVote(body.vote)
-          
-  
         }
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
