@@ -14,14 +14,13 @@
 }
 
 .callout {
-    width: 800px;
-    margin: auto;
-    background-color: #DFEBD6;
-    color: #6b9947;
+  width: 800px;
+  margin: auto;
+  background-color: #dfebd6;
+  color: #6b9947;
 }
-
 label {
-    color: #6b9947;
+  color: #6b9947;
 }
 
 body {
@@ -43,4 +42,9 @@ button {
 #downvote.active {
     background: rgb(119, 119, 236);
     color: white;
+}
+
+
+.invisible {
+  visibility: hidden;
 }
