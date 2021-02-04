@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useParams, withRouter } from "react-router-dom";
 import NewReviewForm from "../NewReviewForm.js";
 import ReviewTile from "./ReviewTile.js";
+import translateServerErrors from "../../services/translateServerErrors.js";
 
 const ParkShow = (props) => {
+  const [errors, setErrors] = useState({});
   const [park, setPark] = useState({
     name: "",
     picture: "",
@@ -71,7 +74,11 @@ const ParkShow = (props) => {
       const parkId = props.match.params.id;
       const reviewId = review.id;
       const response = await fetch(`/api/v1/parks/${parkId}/reviews/${reviewId}`, {
-        method: "DELETE",
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(review),
       });
       if (!response.ok) {
         if (response.status === 422) {
@@ -84,7 +91,13 @@ const ParkShow = (props) => {
           throw error;
         }
       } else {
-        park.reviews.forEach((existingReview) => {
+        const body = await response.json();
+        setPark({
+          ...park,
+          reviews: body.park.reviews,
+          averageRating: body.park.averageRating,
+        });
+        /* park.reviews.forEach((existingReview) => {
           if (review.id === existingReview.id) {
             let reviewArray = park.reviews;
             reviewArray.splice(reviewArray.indexOf(existingReview), 1);
@@ -93,7 +106,7 @@ const ParkShow = (props) => {
               reviews: reviewArray,
             });
           }
-        });
+        }); */
         /* let sum = 0;
         park.reviews.forEach((existingReview) => {
           sum += existingReview.rating;
@@ -135,13 +148,22 @@ const ParkShow = (props) => {
         setPark({
           ...park,
           reviews: body.park.reviews,
+          averageRating: body.park.averageRating,
         });
+        setErrors({});
         return;
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
+
+  let loggedInUser;
+  if (props.user == undefined) {
+    loggedInUser = { email: "guest" };
+  } else {
+    loggedInUser = props.user;
+  }
 
   const allTheReviews = park.reviews.map((review) => {
     return (
@@ -150,6 +172,8 @@ const ParkShow = (props) => {
         review={review}
         deleteReview={deleteReview}
         updateReview={updateReview}
+        errors={errors}
+        user={loggedInUser.email}
       />
     );
   });
@@ -167,4 +191,4 @@ const ParkShow = (props) => {
   );
 };
 
-export default ParkShow;
+export default withRouter(ParkShow);

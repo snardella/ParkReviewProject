@@ -34,11 +34,14 @@ parkReviewsRouter.post("/", async (req, res) => {
   }
 });
 
-parkReviewsRouter.delete("/:reviewId", async (req, res) => {
+parkReviewsRouter.post("/:reviewId", async (req, res) => {
   try {
     const reviewId = req.params.reviewId;
+    const parkId = req.params.parkId;
     await Review.query().deleteById(reviewId);
-    return res.status(204).json({});
+    const park = await Park.query().findById(parkId);
+    const serializedPark = await ParkSerializer.showDetails(park);
+    return res.status(201).json({ park: serializedPark });
   } catch (error) {
     return res.status(500).json({ errors: error });
   }
@@ -49,7 +52,9 @@ parkReviewsRouter.patch("/:reviewId", async (req, res) => {
     const parkId = req.params.parkId;
     const reviewId = req.params.reviewId;
     const comments = req.body.comments;
-    await Review.query().patchAndFetchById(reviewId, { comments: comments });
+    const rating = req.body.rating;
+    await Review.query().patch({ comments: comments }).findById(reviewId);
+    await Review.query().patch({ rating: rating }).findById(reviewId);
     const park = await Park.query().findById(parkId);
     const serializedPark = await ParkSerializer.showDetails(park);
     return res.status(201).json({ park: serializedPark });
