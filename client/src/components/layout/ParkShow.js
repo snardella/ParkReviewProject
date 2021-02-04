@@ -155,10 +155,12 @@ const ParkShow = (props) => {
           <h1 className="showpage-title">{park.name}</h1>
           <h5>
             <span>
-              {park.location}
-              <br />
-              Average rating: {park.averageRating}
-              <br />
+              <h3 className="title-location">
+                {park.location}
+                <br />
+                Average rating: {park.averageRating}
+                <br />
+              </h3>
             </span>
           </h5>
           <br></br>

@@ -1,44 +1,38 @@
-import React, { useState, useEffect } from "react"
-import ParkTile from "./ParkTile.js"
+import React, { useState, useEffect } from "react";
+import ParkTile from "./ParkTile.js";
 
 const ParkList = (props) => {
-  const [parks, setParks] = useState([])
+  const [parks, setParks] = useState([]);
 
   const getParks = async () => {
     try {
-      const response = await fetch("/api/v1/parks")
+      const response = await fetch("/api/v1/parks");
 
-      if(!response.ok){
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
       }
-      const body = await response.json()
-      setParks(body.parks)
+      const body = await response.json();
+      setParks(body.parks);
     } catch (error) {
-      console.error(`Error in fetch: ${error.message}`)
+      console.error(`Error in fetch: ${error.message}`);
     }
-  }
+  };
   useEffect(() => {
-    getParks()
-  }, [])
+    getParks();
+  }, []);
 
-  const parksListItems = parks.map(parksItem => {
-    
-    return <ParkTile 
-        key={parksItem.id} 
-        parkData= {parksItem}
-      />
-  }) 
-  
+  const parksListItems = parks.map((parksItem) => {
+    return <ParkTile key={parksItem.id} parkData={parksItem} />;
+  });
+
   return (
     <div className="grid-container">
-      <h1 className="park-list-title">All Parks</h1>
-        <ul >
-          {parksListItems}
-        </ul>
+      <h1 className="park-list-title">Park View</h1>
+      <ul>{parksListItems}</ul>
     </div>
-  )
-}
+  );
+};
 
-export default ParkList 
+export default ParkList;
