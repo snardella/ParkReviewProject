@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import style from "../../assets/scss/main.scss"
+import Vote from "./Vote.js"
 
 const ParkTile = (props) => {
-  const { id, name, location, description, picture } = props.parkData;
+  const {id, name, location, description, rating, picture, voteTotal} = props.parkData;
   const averageRating = props.parkData.averageRating;
   return (
 
@@ -16,6 +16,13 @@ const ParkTile = (props) => {
           </Link>
           <h4 className="park-show-location">{location}</h4>
           <p className="park-tile-description">Average rating:    {averageRating}</p>
+          <h5>Votes: {voteTotal}</h5>
+          <Vote 
+            postVote={props.postVote} 
+            parkId={id}
+            user={props.user}
+            currentVote={props.currentVote}
+          />
         </div>
       </div>
     </div>
