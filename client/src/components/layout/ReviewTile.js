@@ -36,6 +36,7 @@ const ReviewTile = (props) => {
   }
 
   return (
+<div className="review-form-reviews">
     <form>
       <ErrorList errors={props.errors} />
       <h4>user email: {props.review.user.email}</h4>
@@ -51,6 +52,7 @@ const ReviewTile = (props) => {
         <option value={4.5}>4.5 Stars </option>
         <option value={5}>5 Stars </option>
       </select>
+      <div className="button-group">
       <input type="text" name="comments" value={review.comments} onChange={handleInputChange} />
       <div className={buttonClassName}>
         <input type="button" className="button" value="Delete" onClick={deleteReviewHandler} />
@@ -58,7 +60,9 @@ const ReviewTile = (props) => {
       <div className={buttonClassName}>
         <input type="button" className="button" value="Save Edit" onClick={saveReview} />
       </div>
+      </div>
     </form>
+</div>
   );
 };
 

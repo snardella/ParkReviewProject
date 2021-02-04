@@ -13,38 +13,192 @@
     tab-size: 4;
 }
 
-.callout {
-  width: 800px;
-  margin: auto;
-  background-color: #dfebd6;
-  color: #6b9947;
-}
-label {
-  color: #6b9947;
-}
-
 body {
-    background-color: #faf9e4;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Noto Serif', Serif;
+  font-Size: 15px;
+  align-items: center;
+  width: auto;
+  height: auto;
+  background-color: #f5f8f4;
 }
 
-button {
-    background: none;
-    border: none;
-    font-size: 16px;
-    border-radius: 4px;
+h1, h2, h3 {
+  font-family: 'Varela Round', Sans-Serif;
+  font-Size: 48px;
 }
 
-#upvote.active {
-    background: orangered;
-    color: white;
+.button {
+  border-radius: 1em;
 }
 
-#downvote.active {
-    background: rgb(119, 119, 236);
-    color: white;
+.top-section {
+  margin: auto;
+  border: blue solid 1px;
+  text-align: center;
+  padding: 100px;
 }
 
+.search-title {
+  font-weight: bolder;
+}
 
-.invisible {
-  visibility: hidden;
+.search-form {
+  border: green solid 1px;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+}
+
+.search-bar {
+  border: pink solid 1px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+}
+
+.nav-bar {
+  font-family: 'Varela Round', Sans-Serif;
+}
+
+.grid-container {
+  border: red solid 1px;
+}
+
+.grid-x {
+  border: blue solid 1px;
+}
+
+.cell {
+  border: green solid 1px;
+  text-align: left;
+}
+
+.tile-image {
+  width: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  align-items: center;
+  height: auto;
+  border-radius: 1em;
+}
+
+.park-list-title {
+  font-size: 33pt;
+  font-family: 'Varela Round', Sans-Serif;
+  align-items: center;
+  width: auto;
+  height: auto;
+  text-align: center;
+  font-weight: 900;
+}
+
+.image {
+  position: relative;
+}
+
+.description {
+  font-size: 18pt;
+  margin-top: 25px;
+  margin-left: 40px;
+}
+
+.index-description {
+  border: solid black 1px;
+  border-radius: 0.2em;
+  align-items: center;
+  width: auto;
+  height: auto;
+  font-size: 18pt;
+  margin-bottom: 10px;
+}
+
+#user-profile-card {
+  margin-top: 20px;
+  text-align: center;
+  margin-left: 200px;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 0.2em;
+}
+
+#park-form-id {
+  margin-top: 30px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.centered-text {
+  margin-left: 2px;
+}
+
+.add-new-park {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+#park-review-form {
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 1em;
+  box-shadow: 10px 10px 8px #888888;
+}
+
+.title-location {
+  margin: auto;
+}
+
+.showpage-title {
+  margin-top: 10px;
+}
+
+.showpage-pic {
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 1em;
+  box-shadow: 10px 10px 8px #888888;
+}
+
+.park-show-title {
+  font-family: 'Varela Round', Sans-Serif;
+  text-align: left;
+  width: auto;
+  height: auto;
+  font-weight: bolder;
+}
+
+.park-show-location {
+  font-family: 'Noto Serif', Serif;
+  align-items: left;
+  text-align: left;
+  width: auto;
+  height: auto;
+}
+
+.park-tile-description {
+  align-items: left;
+  text-align: left;
+  width: auto;
+  height: auto;
+  font-family: 'Noto Serif', Serif;
+  font-Size: 15px;
+}
+
+.review-form-reviews {
+  border: black solid 1px;
+  border-radius: 1em;
+  margin: 40px;
+  padding: 10px;
+}
+
+.comment-text {
+  padding: 10px;
 }

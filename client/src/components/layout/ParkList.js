@@ -9,20 +9,19 @@ const ParkList = (props) => {
 
   const getParks = async () => {
     try {
-      const response = await fetch("/api/v1/parks")
+      const response = await fetch("/api/v1/parks");
 
-      if(!response.ok){
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
       }
-      const body = await response.json()
-      
-      setParks(body.parks)
+      const body = await response.json();
+      setParks(body.parks);
     } catch (error) {
-      console.error(`Error in fetch: ${error.message}`)
+      console.error(`Error in fetch: ${error.message}`);
     }
-  }
+  };
   useEffect(() => {
     getParks()
   }, [])
@@ -51,8 +50,6 @@ const ParkList = (props) => {
           const body = await response.json()
           setParks(body.parks)
           setCurrentVote(body.vote)
-          
-  
         }
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -73,12 +70,27 @@ const ParkList = (props) => {
   
   return (
     <div>
-      <h1>All parks</h1>
-        <ul>
-          {parksListItems}
-        </ul>
+      <div className="top-section">
+        <form className="search-form">
+        <h2 className="search-title">
+          Welcome Traveler
+        </h2>
+          <input className="search-bar" type="text" placeholder="enter a park name here"/>
+          <button className="button" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+      
+
+      <div className="row">
+          <div className="grid-x align-center">
+            <ul className="parklist-column">{parksListItems}</ul>
+          </div>
+      </div>
+
     </div>
-  )
-}
+  );
+};
 
 export default withRouter(ParkList)

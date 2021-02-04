@@ -27,10 +27,11 @@ const TopBar = ({ user }) => {
   ];
 
   return (
+    <div className="nav-bar">
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">App</li>
+          <li className="menu-text">Parkview</li>
           <li>
             <Link to="/parks">Home</Link>
           </li>
@@ -39,6 +40,7 @@ const TopBar = ({ user }) => {
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
       </div>
+    </div>
     </div>
   );
 };
