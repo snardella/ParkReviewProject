@@ -19,7 +19,7 @@ const ReviewTile = (props) => {
 
   const handleInputChange = (event) => {
     if (props.user !== props.review.user.email || props.user == "guest") {
-      return console.log("User cant edit");
+      return console.log("User does not have access to update this review");
     }
     event.preventDefault();
     setReview({

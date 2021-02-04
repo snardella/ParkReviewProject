@@ -71,14 +71,12 @@ const ParkShow = (props) => {
 
   const deleteReview = async (review) => {
     try {
-      const parkId = props.match.params.id;
       const reviewId = review.id;
-      const response = await fetch(`/api/v1/parks/${parkId}/reviews/${reviewId}`, {
-        method: "POST",
+      const response = await fetch(`/api/v1/reviews/${reviewId}`, {
+        method: "DELETE",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
-        body: JSON.stringify(review),
       });
       if (!response.ok) {
         if (response.status === 422) {
@@ -90,33 +88,13 @@ const ParkShow = (props) => {
           const error = new Error(errorMessage);
           throw error;
         }
-      } else {
-        const body = await response.json();
-        setPark({
-          ...park,
-          reviews: body.park.reviews,
-          averageRating: body.park.averageRating,
-        });
-        /* park.reviews.forEach((existingReview) => {
-          if (review.id === existingReview.id) {
-            let reviewArray = park.reviews;
-            reviewArray.splice(reviewArray.indexOf(existingReview), 1);
-            setPark({
-              ...park,
-              reviews: reviewArray,
-            });
-          }
-        }); */
-        /* let sum = 0;
-        park.reviews.forEach((existingReview) => {
-          sum += existingReview.rating;
-        });
-        let average = sum / park.reviews.length;
-        setPark({
-          ...park,
-          averageRating: average,
-        }); */
       }
+      const body = await response.json();
+      setPark({
+        ...park,
+        reviews: body.reviews,
+        averageRating: body.averageRating,
+      });
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
@@ -124,9 +102,8 @@ const ParkShow = (props) => {
 
   const updateReview = async (review) => {
     try {
-      const parkId = props.match.params.id;
       const reviewId = review.id;
-      const response = await fetch(`/api/v1/parks/${parkId}/reviews/${reviewId}`, {
+      const response = await fetch(`/api/v1/reviews/${reviewId}`, {
         method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -145,6 +122,7 @@ const ParkShow = (props) => {
         }
       } else {
         const body = await response.json();
+        debugger;
         setPark({
           ...park,
           reviews: body.park.reviews,
