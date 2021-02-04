@@ -36,7 +36,7 @@ const ReviewTile = (props) => {
   }
 
   return (
-    <div>
+    <form>
       <ErrorList errors={props.errors} />
       <h4>user email: {props.review.user.email}</h4>
       <select name="rating" onChange={handleInputChange} value={review.rating}>
@@ -53,12 +53,12 @@ const ReviewTile = (props) => {
       </select>
       <input type="text" name="comments" value={review.comments} onChange={handleInputChange} />
       <div className={buttonClassName}>
-        <input className="button" value="Delete" onClick={deleteReviewHandler} />
+        <input type="button" className="button" value="Delete" onClick={deleteReviewHandler} />
       </div>
       <div className={buttonClassName}>
-        <input className="button" value="Save Edit" onClick={saveReview} />
+        <input type="button" className="button" value="Save Edit" onClick={saveReview} />
       </div>
-    </div>
+    </form>
   );
 };
 
