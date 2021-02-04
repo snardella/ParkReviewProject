@@ -6,8 +6,8 @@ const Model = require("./Model");
 const saltRounds = 10;
 
 const uniqueFunc = unique({
-  fields: ["email"],
-  identifiers: ["id"],
+    fields: ["email"],
+    identifiers: ["id"],
 });
 
 class User extends uniqueFunc(Model) {
@@ -36,8 +36,7 @@ class User extends uniqueFunc(Model) {
   }
 
   static get relationMappings(){
-    const Park = require("./Park.js")
-    const Review = require("./Review.js")
+    const {Vote, Review, Park} = require("./index")
     
     return {
       parks: {
@@ -59,6 +58,26 @@ class User extends uniqueFunc(Model) {
           from: "users.id",
           to: "reviews.userId",
         }
+      },
+      parks: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Park,
+        join: {
+            from: "users.id",
+            through: {
+                from: "votes.userId",
+                to: "votes.parkId"
+            },
+            to: "parks.id"
+          }
+        },
+        votes: {
+        relation: Model.HasManyRelation,
+        modelClass: Vote,
+        join: {
+            from: "users.id",
+            to: "votes.userId"
+        }
       }
     }
   }
@@ -69,8 +88,7 @@ class User extends uniqueFunc(Model) {
     if (serializedJson.cryptedPassword) {
       delete serializedJson.cryptedPassword;
     }
-
-    return serializedJson;
+      return serializedJson;
   }
 }
 
