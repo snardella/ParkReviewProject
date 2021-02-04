@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NewReviewForm from "../NewReviewForm.js";
 import ReviewTile from "./ReviewTile.js";
+import style from "../../assets/scss/main.scss"
 
 const ParkShow = (props) => {
   const [park, setPark] = useState({
@@ -152,7 +153,7 @@ const ParkShow = (props) => {
       <div className="image grid-container small-10 small-centered columns">
         <img className="showpage-pic" src={park.picture} />
         <aside className="module">
-          <h1 className="showpage-title">{park.name}</h1>
+          <h3 className="showpage-title">{park.name}</h3>
           <h5>
             <span>
               <h3 className="title-location">
@@ -165,9 +166,9 @@ const ParkShow = (props) => {
           </h5>
           <br></br>
         </aside>
-        <h3>{park.description}</h3>
+        <p>{park.description}</p>
       </div>
-      <div>
+      <div className="review-comment-box">
         <NewReviewForm parkId={park.id} postReview={postReview} />
         {allTheReviews}
       </div>

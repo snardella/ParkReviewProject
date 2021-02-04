@@ -28,9 +28,26 @@ const ParkList = (props) => {
   });
 
   return (
-    <div className="grid-container">
-      <h1 className="park-list-title">Park View</h1>
-      <ul>{parksListItems}</ul>
+    <div>
+      <div className="top-section">
+        <form className="search-form">
+        <h2 className="search-title">
+          Welcome Traveler
+        </h2>
+          <input className="search-bar" type="text" placeholder="enter a park name here"/>
+          <button className="button" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+      
+
+      <div className="row">
+          <div className="grid-x align-center">
+            <ul className="parklist-column">{parksListItems}</ul>
+          </div>
+      </div>
+
     </div>
   );
 };

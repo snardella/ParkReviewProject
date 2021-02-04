@@ -32,14 +32,10 @@ const ReviewTile = (props) => {
 
   return (
     <React.Fragment>
+    <div className="review-form-reviews">
       <h4>user email: {props.review.user.email}</h4>
-      <h5>Submitted Rating: {props.review.rating}</h5>
-      <div className="button-group">
-        <input className="button" value="Delete" onClick={deleteReviewHandler} />
-      </div>
-      <div className="button-group">
-        <input className="button" value="Save Edit" onClick={saveReview} />
-      </div>
+      <p>Submitted Rating: {props.review.rating}</p>
+      <div>
       {inputVisible ? (
         <input
           ref={inputRef}
@@ -49,8 +45,14 @@ const ReviewTile = (props) => {
           }}
         />
       ) : (
-        <span onClick={() => setInputVisible(true)}>{comments}</span>
+        <div className="comment-text" onClick={() => setInputVisible(true)}>{comments}</div>
       )}
+      </div>
+      <div className="button-group">
+        <input className="button" value="Delete" onClick={deleteReviewHandler} />
+        <input className="button" value="Save Edit" onClick={saveReview} />
+      </div>
+    </div>
     </React.Fragment>
   );
 };
