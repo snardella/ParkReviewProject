@@ -38,7 +38,7 @@ const App = (props) => {
           <h2>{greeting}</h2>
         </Route>
         <Route exact path="/parks">
-          <ParkList user={currentUser}/>
+          <ParkList user={currentUser} />
         </Route>
         <AuthenticatedRoute exact path="/parks/new" component={NewParkForm} user={currentUser} />
         <Route exact path="/parks/:id">
