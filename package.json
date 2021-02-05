@@ -20,11 +20,5 @@
     "node": "^14.15",
     "yarn": "1.22.10"
   },
-  "version": "0.0.0",
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@fortawesome/react-fontawesome": "^0.1.14",
-    "styled-components": "^5.2.1"
-  }
+  "version": "0.0.0"
 }
