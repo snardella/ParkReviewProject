@@ -144,6 +144,4 @@ const ParkList = (props) => {
   );
 };
 
-export const Grid = styled.div;
-
 export default withRouter(ParkList);
