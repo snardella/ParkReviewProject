@@ -102,7 +102,14 @@ h3 {
 }
 
 .image {
+  margin-top: 15px;
   position: relative;
+  background-color: #d7dbd5;
+  border-radius: 0.4em;
+}
+
+#park-show-description {
+  font-size: 24px;
 }
 
 .description {
@@ -121,12 +128,15 @@ h3 {
 }
 
 #user-profile-card {
+  align-items: center;
+  width: auto;
+  height: auto;
   margin-top: 20px;
   text-align: center;
-  margin-left: 200px;
+  margin-left: 600px;
   display: inline-block;
-  border: 1px solid black;
   border-radius: 0.2em;
+  background-color: white;
 }
 
 #park-form-id {
@@ -156,17 +166,20 @@ h3 {
 
 .title-location {
   margin: auto;
+  font-weight: 400;
+  font-size: 24px;
 }
 
 .showpage-title {
   margin-top: 10px;
+  font-size: 40px;
 }
 
 .showpage-pic {
   align-items: center;
   width: auto;
   height: auto;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 10px;
   border-radius: 1em;
   box-shadow: 10px 10px 8px #888888;
@@ -263,4 +276,22 @@ a {
 
 .thumbs-down {
   margin-left: 20px;
+}
+
+.module {
+  align-items: center;
+  width: auto;
+  height: auto;
+  font-size: 14px;
+  border-radius: 0.3em;
+  position: absolute; /* Position the background text */
+  bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1; /* Grey text */
+  // width: 50%; /* Full width */
+  padding: 20px;
+  margin-bottom: 200px;
+  margin-right: 30px;
+  margin-left: 60px;
 }
