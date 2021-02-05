@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ParkTile from "./ParkTile.js";
 import { withRouter } from "react-router";
-import styled from "styled-components";
 import translateServerErrors from "../../services/translateServerErrors.js";
 
 const ParkList = (props) => {
