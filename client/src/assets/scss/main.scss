@@ -133,12 +133,15 @@ h3 {
 }
 
 #user-profile-card {
+  align-items: center;
+  width: auto;
+  height: auto;
   margin-top: 20px;
   text-align: center;
-  margin-left: 200px;
+  margin-left: 600px;
   display: inline-block;
-  border: 1px solid black;
   border-radius: 0.2em;
+  background-color: white;
 }
 
 #park-form-id {

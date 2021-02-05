@@ -129,16 +129,12 @@ const ParkList = (props) => {
       <div className="top-section">
         <form className="search-form">
           <img id="logo-img" src="https://i.postimg.cc/zBMLPrdf/unnamed.png" />
-          <h2 className="search-title">Welcome Traveler</h2>
-          <input className="search-bar" type="text" placeholder="enter a park name here" />
-          <button className="button" type="submit">
-            Search
-          </button>
+          <h2 className="search-title"> Welcome Traveler </h2>
         </form>
       </div>
       <div>
         <div id="each-park-tile">
-          <div id="card-holder">{parksListItems}</div>
+          <div id="card-holder"> {parksListItems} </div>
         </div>
       </div>
     </div>
