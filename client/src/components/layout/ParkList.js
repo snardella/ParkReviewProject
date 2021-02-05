@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ParkTile from "./ParkTile.js";
 import { withRouter } from "react-router";
+import styled from "styled-components";
 import translateServerErrors from "../../services/translateServerErrors.js";
 
 const ParkList = (props) => {
@@ -127,6 +128,7 @@ const ParkList = (props) => {
     <div>
       <div className="top-section">
         <form className="search-form">
+          <img id="logo-img" src="https://i.postimg.cc/zBMLPrdf/unnamed.png" />
           <h2 className="search-title">Welcome Traveler</h2>
           <input className="search-bar" type="text" placeholder="enter a park name here" />
           <button className="button" type="submit">
@@ -134,14 +136,15 @@ const ParkList = (props) => {
           </button>
         </form>
       </div>
-
-      <div className="row">
-        <div className="grid-x align-center">
-          <ul className="parklist-column">{parksListItems}</ul>
+      <div>
+        <div id="each-park-tile">
+          <div id="card-holder">{parksListItems}</div>
         </div>
       </div>
     </div>
   );
 };
+
+export const Grid = styled.div;
 
 export default withRouter(ParkList);

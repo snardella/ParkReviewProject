@@ -5,27 +5,33 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-    -moz-tab-size: 4;
-    tab-size: 4;
+  -moz-tab-size: 4;
+  tab-size: 4;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
-  font-family: 'Noto Serif', Serif;
-  font-Size: 15px;
+  font-family: "Noto Serif", Serif;
+  font-size: 15px;
   align-items: center;
   width: auto;
   height: auto;
   background-color: #f5f8f4;
+  background-image: url("https://image.freepik.com/free-vector/light-green-elegant-watercolor-background_1055-2316.jpg");
+  background-size: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
-h1, h2, h3 {
-  font-family: 'Varela Round', Sans-Serif;
-  font-Size: 48px;
+h1,
+h2,
+h3 {
+  font-family: "Varela Round", Sans-Serif;
+  font-size: 48px;
 }
 
 .button {
@@ -34,60 +40,72 @@ h1, h2, h3 {
 
 .top-section {
   margin: auto;
-  border: blue solid 1px;
   text-align: center;
-  padding: 100px;
+  padding: 50px;
 }
 
 .search-title {
   font-weight: bolder;
+  font-family: "Ubuntu", sans-serif;
+  text-shadow: 0 0 4px rgb(63, 117, 105);
+  /* horizontal-offset vertical-offset 'blur' colour */
+  -moz-text-shadow: 0 0 4px rgb(43, 165, 104);
+  -webkit-text-shadow: 0 0 4px rgb(43, 165, 104);
+  font-size: 7vw;
+  text-align: center;
+  color: white;
+  margin-top: 5px;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .search-form {
-  border: green solid 1px;
   margin-left: auto;
   margin-right: auto;
   width: auto;
 }
 
 .search-bar {
-  border: pink solid 1px;
   margin-left: auto;
   margin-right: auto;
   width: 300px;
 }
 
 .nav-bar {
-  font-family: 'Varela Round', Sans-Serif;
+  font-family: "Varela Round", Sans-Serif;
 }
 
-.grid-container {
-  border: red solid 1px;
-}
-
-.grid-x {
-  border: blue solid 1px;
+.tile-container {
+  float: left;
+  width: 27%;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  margin-left: 5%;
+  height: 65vh;
+  font-size: 80%;
 }
 
 .cell {
-  border: green solid 1px;
   text-align: left;
 }
 
 .tile-image {
-  width: auto;
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 15px;
   align-items: center;
-  height: auto;
-  border-radius: 1em;
+  border-radius: 8%;
+  width: 100%;
+  height: 25vh !important;
+}
+
+.tile-image:hover {
+  opacity: 50%;
 }
 
 .park-list-title {
   font-size: 33pt;
-  font-family: 'Varela Round', Sans-Serif;
+  font-family: "Varela Round", Sans-Serif;
   align-items: center;
   width: auto;
   height: auto;
@@ -106,7 +124,6 @@ h1, h2, h3 {
 }
 
 .index-description {
-  border: solid black 1px;
   border-radius: 0.2em;
   align-items: center;
   width: auto;
@@ -168,15 +185,17 @@ h1, h2, h3 {
 }
 
 .park-show-title {
-  font-family: 'Varela Round', Sans-Serif;
+  font-family: "Varela Round", Sans-Serif;
+  align-items: left;
   text-align: left;
-  width: auto;
-  height: auto;
-  font-weight: bolder;
+  float: none;
+  display: block;
+  text-align: left;
+  font-size: 2vw;
 }
 
 .park-show-location {
-  font-family: 'Noto Serif', Serif;
+  font-family: "Noto Serif", Serif;
   align-items: left;
   text-align: left;
   width: auto;
@@ -188,8 +207,8 @@ h1, h2, h3 {
   text-align: left;
   width: auto;
   height: auto;
-  font-family: 'Noto Serif', Serif;
-  font-Size: 15px;
+  font-family: "Noto Serif", Serif;
+  font-size: 15px;
 }
 
 .review-form-reviews {
@@ -202,3 +221,61 @@ h1, h2, h3 {
 .comment-text {
   padding: 10px;
 }
+
+.park-info-cell {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+.park-list-title {
+  text-align: center;
+  width: auto;
+  height: auto;
+  float: none;
+  display: block;
+}
+
+#card-holder {
+  flex-wrap: wrap;
+}
+
+#logo-img {
+  height: 30vh;
+  width: auto;
+}
+
+.top-bar {
+  background-color: rgb(91, 148, 148);
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+#ul-top-bar.menu {
+  background-color: rgb(91, 148, 148);
+  color: white;
+}
+
+#profile-nav-bar {
+  background-color: rgb(91, 148, 148);
+  color: white;
+}
+
+#nav-link {
+  color: white;
+  background-color: rgb(91, 148, 148);
+}
+
+a {
+  color: black;
+}
+
+.thumbs-down {
+  margin-left: 20px;
+}
+
+// i {
+// }
