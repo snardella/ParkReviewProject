@@ -157,7 +157,7 @@ const ParkShow = (props) => {
   });
 
   return (
-    <div className="image grid-container small-10 small-centered columns">
+    <div className="image grid-container small-10 small-centered columns" id="image-container">
       <div className="image grid-container small-10 small-centered columns">
         <img className="showpage-pic" src={park.picture} />
         <aside className="module">
@@ -174,7 +174,7 @@ const ParkShow = (props) => {
           </h5>
           <br></br>
         </aside>
-        <p>{park.description}</p>
+        <p id="park-show-description">{park.description}</p>
       </div>
       <div className="review-comment-box">
         <NewReviewForm parkId={park.id} postReview={postReview} />
