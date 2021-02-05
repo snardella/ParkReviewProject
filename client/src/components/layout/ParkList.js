@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ParkTile from "./ParkTile.js";
 import { withRouter } from "react-router";
+import translateServerErrors from "../../services/translateServerErrors.js";
 
 const ParkList = (props) => {
   const [parks, setParks] = useState([]);
@@ -26,6 +27,33 @@ const ParkList = (props) => {
     getNPSParks();
   }, []);
 
+  const postNPSParks = async (newParks) => {
+    try {
+      const response = await fetch(`/api/v1/parks/NPS`, {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(newParks),
+      });
+      if (!response.ok) {
+        if (response.status === 422) {
+          const body = await response.json();
+          const newErrors = translateServerErrors(body.errors);
+          return setErrors(newErrors);
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          const error = new Error(errorMessage);
+          throw error;
+        }
+      } else {
+        getParks();
+      }
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
+
   const getNPSParks = async () => {
     try {
       const response = await fetch(`api/v1/NPS`);
@@ -36,23 +64,23 @@ const ParkList = (props) => {
       }
       const NPSData = await response.json();
       console.log(NPSData);
+      let NPSArray = [];
       NPSData.data.forEach((park) => {
-        setParks({
-          ...parks,
+        NPSArray.push({
           name: park.fullName,
           location: park.addresses[0].city,
           description: park.description,
           picture: park.images[0].url,
+          rating: "1",
+          userId: 1,
         });
       });
+      setParks(...parks, NPSArray);
+      postNPSParks(NPSArray);
     } catch (error) {
       console.error(`Error in fetch: ${err.message}`);
     }
   };
-
-  const parksListItems = parks.map((parksItem) => {
-    return <ParkTile key={parksItem.id} parkData={parksItem} />;
-  });
 
   const postVote = async (newVoteData) => {
     try {
