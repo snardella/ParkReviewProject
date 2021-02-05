@@ -10,11 +10,8 @@ class Park extends unique(Model) {
   static get tableName() {
     return "parks";
   }
-
   static get relationMappings() {
-    const Review = require("./Review.js");
-    const User = require("./User.js");
-
+    const { Review, User, Vote } = require("./index");
     return {
       reviews: {
         relation: Model.HasManyRelation,
@@ -32,14 +29,33 @@ class Park extends unique(Model) {
           to: "users.id",
         },
       },
+      users: {
+        relation: Model.ManyToManyRelation,
+        modelClass: User,
+        join: {
+          from: "parks.id",
+          through: {
+            from: "votes.parkId",
+            to: "votes.userId",
+          },
+          to: "users.id",
+        },
+      },
+      votes: {
+        relation: Model.HasManyRelation,
+        modelClass: Vote,
+        join: {
+          from: "parks.id",
+          to: "votes.parkId",
+        },
+      },
     };
   }
-
   static get jsonSchema() {
     return {
       type: "object",
       required: ["name", "location", "rating"],
-      name: { type: "string", minLength: 1, maxLength: 30 },
+      name: { type: "string", minLength: 1, maxLength: 300 },
       location: { type: "string" },
       description: { type: "string" },
       rating: { type: ["string", "float"] },

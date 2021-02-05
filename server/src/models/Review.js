@@ -8,7 +8,7 @@ class Review extends Model {
   static get relationMappings() {
     const Park = require("./Park.js");
     const User = require("./User.js");
-    
+
     return {
       park: {
         relation: Model.BelongsToOneRelation,
@@ -34,7 +34,7 @@ class Review extends Model {
       type: "object",
       required: ["rating", "comments"],
       properties: {
-        rating: { type: "string", minLength: 1, maxLength: 255 },
+        rating: { type: ["string", "float", "integer"], minLength: 1, maxLength: 255 },
         comments: { type: "string", minLength: 1, maxLength: 255 },
         parkId: { type: ["string", "integer"] },
       },

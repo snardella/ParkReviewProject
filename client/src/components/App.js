@@ -37,11 +37,16 @@ const App = (props) => {
         <Route exact path="/">
           <h2>{greeting}</h2>
         </Route>
-        <Route exact path="/parks" component={ParkList} />
+        <Route exact path="/parks">
+          <ParkList user={currentUser}/>
+        </Route>
         <AuthenticatedRoute exact path="/parks/new" component={NewParkForm} user={currentUser} />
-        <Route exact path="/parks/:id" component={ParkShow} />
+        <Route exact path="/parks/:id">
+          <ParkShow user={currentUser} />
+        </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
+
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
       </Switch>
     </Router>
