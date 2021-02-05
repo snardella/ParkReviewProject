@@ -70,22 +70,37 @@ const NewParkForm = (props) => {
   }
 
   return (
-    <div className="callout">
+    <div className="callout" id="park-form-id">
       <h1>Add a Park to this Page</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            onChange={handleInputChange}
-            value={newPark.name}
-          />
-          <FormError error={errors.name} />
-        </label>
+      <form className="mb" onSubmit={handleSubmit}>
+        <div className="row">
 
-        <label>
+          <label className="medium-6 columns">
+            Name:
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              onChange={handleInputChange}
+              value={newPark.name}
+            />
+            <FormError error={errors.name} />
+          </label>
+
+          <label className="medium-6 columns">
+            Location:
+            <input
+              type="text"
+              name="location"
+              placeholder="Location"
+              onChange={handleInputChange}
+              value={newPark.location}
+            />
+            <FormError error={errors.location} />
+          </label>
+
+        </div>
+        <label className="medium-6 columns">
           Description (Optional):
           <input
             type="text"
@@ -94,18 +109,6 @@ const NewParkForm = (props) => {
             onChange={handleInputChange}
             value={newPark.description}
           />
-        </label>
-
-        <label>
-          Location:
-          <input
-            type="text"
-            name="location"
-            placeholder="Location"
-            onChange={handleInputChange}
-            value={newPark.location}
-          />
-          <FormError error={errors.location} />
         </label>
 
         <label>
