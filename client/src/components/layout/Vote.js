@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Vote = (props) => {
   let upVoteClass = undefined;
@@ -53,10 +53,15 @@ const Vote = (props) => {
   return (
     <main>
       <button id="upvote" className={upVoteClass} onClick={toggleUpvote}>
-        Upvote
+        <div className="thumbs-up">
+          <i class="far fa-thumbs-up fa-3x"></i>
+        </div>
       </button>
+
       <button id="downvote" className={downVoteClass} onClick={toggleDownvote}>
-        Downvote
+        <div className="thumbs-down">
+          <i class="far fa-thumbs-down fa-3x"></i>
+        </div>
       </button>
     </main>
   );
