@@ -34,9 +34,6 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/">
-          <h2>{greeting}</h2>
-        </Route>
         <Route exact path="/parks">
           <ParkList user={currentUser} />
         </Route>
@@ -46,8 +43,10 @@ const App = (props) => {
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
-
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
+        <Route exact path="/">
+          <h2>{greeting}</h2>
+        </Route>
       </Switch>
     </Router>
   );
