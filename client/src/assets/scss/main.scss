@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif|Varela+Round");
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
@@ -275,7 +276,7 @@ a {
 }
 
 .thumbs-down {
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 .module {
@@ -294,4 +295,8 @@ a {
   margin-bottom: 200px;
   margin-right: 30px;
   margin-left: 60px;
+}
+
+#downvote {
+  margin-left: 20px;
 }

@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 const Vote = (props) => {
   let upVoteClass = undefined;
@@ -53,15 +55,11 @@ const Vote = (props) => {
   return (
     <main>
       <button id="upvote" className={upVoteClass} onClick={toggleUpvote}>
-        <div className="thumbs-up">
-          <i class="far fa-thumbs-up fa-3x"></i>
-        </div>
+        <FontAwesomeIcon icon={faThumbsUp} size="3x" />
       </button>
 
       <button id="downvote" className={downVoteClass} onClick={toggleDownvote}>
-        <div className="thumbs-down">
-          <i class="far fa-thumbs-down fa-3x"></i>
-        </div>
+        <FontAwesomeIcon icon={faThumbsDown} size="3x" />
       </button>
     </main>
   );
