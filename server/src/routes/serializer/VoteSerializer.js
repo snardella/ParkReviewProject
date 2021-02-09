@@ -7,7 +7,7 @@ class VoteSerializer {
       const sumVotes = mappedVotes.reduce((voteAcc, vote) => voteAcc + vote);
       return sumVotes;
     }
-    return "nope";
+    return 0;
   };
 }
 export default VoteSerializer;
