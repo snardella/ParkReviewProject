@@ -54,4 +54,4 @@
 
 # Heroku Link
 
-https://park-review-launch-31.herokuapp.com/
+https://parkviewproject.herokuapp.com/parks
